@@ -14,8 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import java.net.URI
+
+plugins {
+    java
+    id("java-library")
+    id("maven-publish")
+    id("signing")
+}
 
 val artefactVersion: String by project
 val projectUrl: String by project
@@ -23,14 +29,39 @@ val projectGithubUrl: String by project
 val licenseName: String by project
 val licenseUrl: String by project
 
-val javaJwtVersion: String by project
-val jacksonVersion: String by project
-val springBootVersion: String by project
-
 group = "com.onixbyte"
 version = artefactVersion
 
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<Jar> {
+    exclude("logback.xml")
+}
+
 dependencies {
+    val slf4jVersion: String by project
+    val logbackVersion: String by project
+    val junitVersion: String by project
+    val javaJwtVersion: String by project
+    val jacksonVersion: String by project
+    val springBootVersion: String by project
+
+    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+
     implementation(project(":guid"))
     implementation(project(":simple-jwt-facade"))
     compileOnly("com.auth0:java-jwt:$javaJwtVersion")
@@ -40,6 +71,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
+
+    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 }
 

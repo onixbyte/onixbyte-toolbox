@@ -18,6 +18,7 @@
 rootProject.name = "JDevKit"
 
 include(
+    "devkit-bom",
     "devkit-core",
     "devkit-utils",
     "guid",
@@ -28,5 +29,5 @@ include(
     "simple-jwt-authzero",
     "simple-jwt-spring-boot-starter",
     "property-guard-spring-boot-starter",
-    "simple-serial"
+    "simple-serial-spring-boot-starter"
 )

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024-2024 OnixByte.
+ * Copyright (C) 2024-2025 OnixByte.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,7 @@
 import java.net.URI
 
 plugins {
-    java
-    id("java-library")
+    id("java-platform")
     id("maven-publish")
     id("signing")
 }
@@ -36,56 +35,32 @@ repositories {
     mavenCentral()
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-    withSourcesJar()
-    withJavadocJar()
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
-tasks.withType<Jar> {
-    exclude("logback.xml")
-}
-
 dependencies {
-    val slf4jVersion: String by project
-    val logbackVersion: String by project
-    val junitVersion: String by project
-    val jacksonVersion: String by project
-    val javaJwtVersion: String by project
-
-    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
-
-    implementation(project(":devkit-utils"))
-    implementation(project(":guid"))
-    implementation(project(":key-pair-loader"))
-    implementation(project(":simple-jwt-facade"))
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    implementation("com.auth0:java-jwt:$javaJwtVersion")
-
-    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
-}
-
-tasks.test {
-    useJUnitPlatform()
+    constraints {
+        api("com.onixbyte:devkit-core:$artefactVersion")
+        api("com.onixbyte:devkit-utils:$artefactVersion")
+        api("com.onixbyte:guid:$artefactVersion")
+        api("com.onixbyte:key-pair-loader:$artefactVersion")
+        api("com.onixbyte:map-util-unsafe:$artefactVersion")
+        api("com.onixbyte:num4j:$artefactVersion")
+        api("com.onixbyte:simple-jwt-facade:$artefactVersion")
+        api("com.onixbyte:simple-jwt-authzero:$artefactVersion")
+        api("com.onixbyte:simple-jwt-spring-boot-starter:$artefactVersion")
+        api("com.onixbyte:property-guard-spring-boot-starter:$artefactVersion")
+        api("com.onixbyte:simple-serial-spring-boot-starter:$artefactVersion")
+    }
 }
 
 publishing {
     publications {
-        create<MavenPublication>("simpleJwtAuthzero") {
+        create<MavenPublication>("devkitBom") {
             groupId = group.toString()
-            artifactId = "simple-jwt-authzero"
+            artifactId = "devkit-bom"
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Auth0"
-                description = "Simple JWT implemented with com.auth0:java-jwt."
+                name = "DevKit BOM"
+                description = "Using BOM could use unified OnixByte JDevKit."
                 url = projectUrl
 
                 licenses {
@@ -96,8 +71,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
+                    developerConnection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
                     url = projectGithubUrl
                 }
 
@@ -105,16 +80,18 @@ publishing {
                     developer {
                         id = "zihluwang"
                         name = "Zihlu Wang"
-                        email = "really@zihlu.wang"
+                        email = "zihlu.wang@onixbyte.com"
                         timezone = "Asia/Hong_Kong"
                     }
                 }
             }
 
-            from(components["java"])
+            print(components)
+
+            from(components["javaPlatform"])
 
             signing {
-                sign(publishing.publications["simpleJwtAuthzero"])
+                sign(publishing.publications["devkitBom"])
             }
         }
 
