@@ -15,7 +15,12 @@
  * limitations under the License.
  */
 
-import java.net.URI
+plugins {
+    java
+    id("java-library")
+    id("maven-publish")
+    id("signing")
+}
 
 val artefactVersion: String by project
 val projectUrl: String by project
@@ -26,11 +31,35 @@ val licenseUrl: String by project
 group = "com.onixbyte"
 version = artefactVersion
 
+repositories {
+    mavenCentral()
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
     withSourcesJar()
     withJavadocJar()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<Jar> {
+    exclude("logback.xml")
+}
+
+dependencies {
+    val slf4jVersion: String by project
+    val logbackVersion: String by project
+    val junitVersion: String by project
+
+    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+
+    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 }
 
 tasks.test {

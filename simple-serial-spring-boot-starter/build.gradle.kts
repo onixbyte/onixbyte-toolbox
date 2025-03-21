@@ -1,7 +1,25 @@
-import java.net.URI
+/*
+ * Copyright (C) 2024-2025 OnixByte.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 plugins {
-    id("java")
+    java
+    id("java-library")
+    id("maven-publish")
+    id("signing")
 }
 
 val artefactVersion: String by project
@@ -10,9 +28,6 @@ val projectGithubUrl: String by project
 val licenseName: String by project
 val licenseUrl: String by project
 
-val jacksonVersion: String by project
-val springBootVersion: String by project
-
 group = "com.onixbyte"
 version = artefactVersion
 
@@ -20,23 +35,43 @@ repositories {
     mavenCentral()
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<Jar> {
+    exclude("logback.xml")
+}
+
 dependencies {
+    val slf4jVersion: String by project
+    val logbackVersion: String by project
+    val junitVersion: String by project
+    val jacksonVersion: String by project
+    val springBootVersion: String by project
+
+    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-data-redis:$springBootVersion")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
+
+    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-    withSourcesJar()
-    withJavadocJar()
 }
 
 tasks.test {
