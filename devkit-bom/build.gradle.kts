@@ -23,6 +23,10 @@ plugins {
 }
 
 val artefactVersion: String by project
+val projectUrl: String by project
+val projectGithubUrl: String by project
+val licenseName: String by project
+val licenseUrl: String by project
 
 group = "com.onixbyte"
 version = artefactVersion
@@ -57,19 +61,19 @@ publishing {
             pom {
                 name = "DevKit BOM"
                 description = "Using BOM could use unified OnixByte JDevKit."
-                url = "https://github.com/OnixByte/devkit-bom"
+                url = projectUrl
 
                 licenses {
                     license {
-                        name = "The Apache License, Version 2.0"
-                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                        name = licenseName
+                        url = licenseUrl
                     }
                 }
 
                 scm {
                     connection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
                     developerConnection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
-                    url = "https://github.com/OnixByte/devkit-bom"
+                    url = projectGithubUrl
                 }
 
                 developers {
