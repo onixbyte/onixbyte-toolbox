@@ -33,6 +33,12 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 public class RedisConfig {
 
     /**
+     * Redis auto configuration.
+     */
+    public RedisConfig() {
+    }
+
+    /**
      * RedisTemplate for serial service.
      *
      * @param redisConnectionFactory redis connection factory
