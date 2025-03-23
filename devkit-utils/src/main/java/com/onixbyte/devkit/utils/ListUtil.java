@@ -29,6 +29,16 @@ import java.util.List;
 public final class ListUtil {
 
     /**
+     * Private constructor to prevent instantiation of this utility class.
+     * <p>
+     * This class provides static methods for list manipulation and is not intended to be
+     * instantiated. The private constructor ensures that no instances can be created, enforcing
+     * the utility nature of the class.
+     */
+    private ListUtil() {
+    }
+
+    /**
      * Splits a given List into a List of sub lists, where each sublist contains at most
      * {@code maxSize} elements. The original list is not modified, and new sub lists are created
      * to hold the partitioned data.
