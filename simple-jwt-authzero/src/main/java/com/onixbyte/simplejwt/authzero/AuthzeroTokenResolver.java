@@ -155,8 +155,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
         private ECPublicKey publicKey;
 
         /**
-         * Private constructor prevents this class being initialised at somewhere it should not
-         * be initialised.
+         * Private constructor to prevent instantiation of this utility class.
          */
         private Builder() {
         }
@@ -643,7 +642,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     );
 
     /**
-     * Private constructor prevent this class being initialised mistakenly.
+     * Private constructor to prevent instantiation of this utility class.
      *
      * @param jtiCreator   a creator that can create JWT id
      * @param algorithm    an algorithm to sign this JWT

@@ -98,7 +98,7 @@ public final class BoolUtil {
     }
 
     /**
-     * Private constructor prevent from being initialised.
+     * Private constructor to prevent instantiation of this utility class.
      */
     private BoolUtil() {}
 

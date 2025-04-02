@@ -54,7 +54,7 @@ public final class PercentileCalculator {
     private final static Logger log = LoggerFactory.getLogger(PercentileCalculator.class);
 
     /**
-     * Private constructor prevents from being initialised.
+     * Private constructor to prevent instantiation of this utility class.
      */
     private PercentileCalculator() {
     }

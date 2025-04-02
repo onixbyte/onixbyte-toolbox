@@ -240,7 +240,7 @@ public final class ReflectMapUtil {
     }
 
     /**
-     * Private constructor will protect this class from being instantiated.
+     * Private constructor to prevent instantiation of this utility class.
      */
     private ReflectMapUtil() {
     }
