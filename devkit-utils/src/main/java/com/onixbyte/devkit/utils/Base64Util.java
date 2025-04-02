@@ -109,7 +109,7 @@ public final class Base64Util {
     }
 
     /**
-     * Private constructor to prevent instantiation of the class.
+     * Private constructor to prevent instantiation of this utility class.
      */
     private Base64Util() {
     }

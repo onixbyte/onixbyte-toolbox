@@ -113,7 +113,7 @@ public final class MapUtil {
     }
 
     /**
-     * Private constructor prevent class being instantiated.
+     * Private constructor to prevent instantiation of this utility class.
      */
     private MapUtil() {
     }

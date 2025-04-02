@@ -37,7 +37,7 @@ public final class RangeUtil {
     private final static Logger log = LoggerFactory.getLogger(RangeUtil.class);
 
     /**
-     * Private constructor prevent class being instantiated.
+     * Private constructor to prevent instantiation of this utility class.
      */
     private RangeUtil() {
     }

@@ -86,8 +86,7 @@ public record QuartileBounds(
         private Double lowerBound;
 
         /**
-         * Private constructor for {@code Builder}, ensuring it can only be instantiated through the
-         * {@link QuartileBounds#builder()} method.
+         * Private constructor to prevent instantiation of this utility class.
          */
         private Builder() {
         }
