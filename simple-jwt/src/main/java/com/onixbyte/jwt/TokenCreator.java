@@ -17,11 +17,6 @@
 
 package com.onixbyte.jwt;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 /**
  *
  */

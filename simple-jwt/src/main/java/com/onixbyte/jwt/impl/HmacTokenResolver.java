@@ -74,26 +74,6 @@ public class HmacTokenResolver implements TokenResolver {
     }
 
     /**
-     * Splits a JWT into its raw components: header, payload, and signature.
-     *
-     * @param token the JWT string to split
-     * @return a {@link RawTokenComponent} containing the header, payload, and signature as strings
-     * @throws IllegalArgumentException if the token does not consist of exactly three parts
-     *                                  separated by dots
-     */
-    @Override
-    public RawTokenComponent splitToken(String token) {
-        var tokenTuple = token.split("\\.");
-
-        if (tokenTuple.length != 3) {
-            throw new IllegalArgumentException(
-                    "The provided JWT is invalid: it must consist of exactly three parts separated by dots.");
-        }
-
-        return new RawTokenComponent(tokenTuple[0], tokenTuple[1], tokenTuple[2]);
-    }
-
-    /**
      * Verifies the HMAC signature of the provided JWT.
      * <p>
      * Splits the token into its components and uses the configured algorithm and secret to check
