@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onixbyte.jwt.TokenResolver;
 import com.onixbyte.jwt.constant.Algorithm;
 import com.onixbyte.jwt.constant.RegisteredClaims;
-import com.onixbyte.jwt.data.RawTokenComponent;
 import com.onixbyte.jwt.holder.ObjectMapperHolder;
 import com.onixbyte.jwt.util.CryptoUtil;
 

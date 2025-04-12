@@ -23,6 +23,16 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import java.util.Objects;
 
+/**
+ * Singleton holder for a configured {@link ObjectMapper} instance.
+ * <p>
+ * Provides a thread-safe, lazily initialised singleton to manage a single {@link ObjectMapper}
+ * instance, configured to sort JSON properties alphabetically. This class is designed to ensure
+ * consistent JSON serialisation and deserialisation across the application, particularly for
+ * JSON Web Token (JWT) processing.
+ *
+ * @author zihluwang
+ */
 public class ObjectMapperHolder {
 
     private static ObjectMapperHolder HOLDER;
@@ -39,9 +49,12 @@ public class ObjectMapperHolder {
     }
 
     /**
-     * Get singleton instance.
+     * Retrieves the singleton instance of this holder.
+     * <p>
+     * Uses double-checked locking to ensure thread-safe, lazy initialisation of the singleton. If
+     * the instance has not been created, it is initialised in a synchronised block.
      *
-     * @return the {@code ObjectMapperHolder} instance
+     * @return the singleton {@link ObjectMapperHolder} instance
      */
     public static ObjectMapperHolder getInstance() {
         if (Objects.isNull(HOLDER)) {
@@ -55,9 +68,9 @@ public class ObjectMapperHolder {
     }
 
     /**
-     * Get Object
+     * Retrieves the configured {@link ObjectMapper} instance.
      *
-     * @return
+     * @return the {@link ObjectMapper} configured for alphabetical property sorting
      */
     public ObjectMapper getObjectMapper() {
         return objectMapper;

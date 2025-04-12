@@ -23,16 +23,23 @@ import com.onixbyte.jwt.data.RawTokenComponent;
 import java.util.Map;
 
 /**
+ * Interface for resolving and verifying JSON Web Tokens (JWTs).
+ * <p>
+ * Defines a contract for implementations that parse, verify, and extract components from JWTs.
+ * Provides methods to validate the token's signature, retrieve its header and payload, and split it
+ * into raw components. Implementations are expected to handle cryptographic verification and JSON
+ * deserialisation specific to their signing algorithm.
  *
+ * @author zihluwang
  */
 public interface TokenResolver {
 
     /**
-     * Verifies the HMAC signature of the provided JWT.
+     * Verifies the signature of the provided JWT.
      * <p>
-     * Splits the token into its components and uses the configured algorithm and secret to check
-     * the signature's validity. If the signature does not match, an exception is thrown by the
-     * underlying cryptographic utility.
+     * Splits the token into its components and checks the signature's validity using the
+     * implementation's configured algorithm and key. If the signature does not match, an exception
+     * is thrown.
      *
      * @param token the JWT string to verify
      * @throws IllegalArgumentException if the token is malformed or the signature verification
@@ -68,6 +75,9 @@ public interface TokenResolver {
 
     /**
      * Splits a JWT into its raw components: header, payload, and signature.
+     * <p>
+     * Provides a default implementation that separates the token string into its three parts using
+     * dot separators and returns them as a {@link RawTokenComponent}.
      *
      * @param token the JWT string to split
      * @return a {@link RawTokenComponent} containing the header, payload, and signature as strings

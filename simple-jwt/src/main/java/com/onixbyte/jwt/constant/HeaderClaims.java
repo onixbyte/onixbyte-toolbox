@@ -17,6 +17,15 @@
 
 package com.onixbyte.jwt.constant;
 
+/**
+ * Utility class defining standard header claim names for JSON Web Tokens (JWTs).
+ * <p>
+ * Provides constants representing the recognised header claims as specified in the JWT standard.
+ * These claims are used in the header section of a JWT to describe its structure and cryptographic
+ * properties.
+ *
+ * @author zihluwang
+ */
 public final class HeaderClaims {
 
     /**

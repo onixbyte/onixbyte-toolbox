@@ -18,7 +18,14 @@
 package com.onixbyte.jwt.constant;
 
 /**
+ * Enumeration of cryptographic algorithms supported for JSON Web Token (JWT) signing
+ * and verification.
+ * <p>
+ * Defines a set of recognised algorithms including HMAC (HS*), RSA (RS*), and ECDSA (ES*) variants,
+ * each with a specific SHA length (256, 384, or 512 bits). Provides methods to identify the
+ * algorithm type and retrieve its properties.
  *
+ * @author zihluwang
  */
 public enum Algorithm {
     HS256(1, 256, "HmacSHA256"),
@@ -32,32 +39,41 @@ public enum Algorithm {
     ES512(3, 512, "SHA512withECDSA");
 
     /**
-     *
+     * Bit flag indicating an HMAC-based algorithm.
      */
     private static final int HS_FLAG = 1; // 001
 
     /**
-     *
+     * Bit flag indicating an RSA-based algorithm.
      */
     private static final int RS_FLAG = 2; // 010
 
     /**
-     *
+     * Bit flag indicating an ECDSA-based algorithm.
      */
     private static final int ES_FLAG = 3; // 011
 
     /**
-     *
+     * The type flag identifying the algorithm family (HMAC, RSA, or ECDSA).
      */
     private final int typeFlag;
+
+    /**
+     * The length of the SHA hash in bits (256, 384, or 512).
+     */
     private final int shaLength;
+
+    /**
+     * The standard name of the algorithm as recognised by the Java Cryptography Architecture (JCA).
+     */
     private final String algorithm;
 
     /**
+     * Constructs an algorithm enum constant with the specified type flag, SHA length, and algorithm name.
      *
-     * @param typeFlag
-     * @param shaLength
-     * @param algorithm
+     * @param typeFlag  the bit flag identifying the algorithm type
+     * @param shaLength the length of the SHA hash in bits
+     * @param algorithm the JCA-compliant algorithm name
      */
     Algorithm(int typeFlag, int shaLength, String algorithm) {
         this.typeFlag = typeFlag;
@@ -66,48 +82,54 @@ public enum Algorithm {
     }
 
     /**
+     * Determines whether this algorithm is HMAC-based.
      *
-     * @return
+     * @return {@code true} if the algorithm uses HMAC (e.g., HS256, HS384, HS512), {@code false} otherwise
      */
     public boolean isHmac() {
         return (this.typeFlag & HS_FLAG) != 0;
     }
 
     /**
+     * Determines whether this algorithm is RSA-based.
      *
-     * @return
+     * @return {@code true} if the algorithm uses RSA (e.g., RS256, RS384, RS512), {@code false} otherwise
      */
     public boolean isRsa() {
         return (this.typeFlag & RS_FLAG) != 0;
     }
 
     /**
+     * Determines whether this algorithm is ECDSA-based.
      *
-     * @return
+     * @return {@code true} if the algorithm uses ECDSA (e.g., ES256, ES384, ES512), {@code false} otherwise
      */
     public boolean isEcdsa() {
         return (this.typeFlag & ES_FLAG) != 0;
     }
 
     /**
+     * Retrieves the SHA length of this algorithm in bits.
      *
-     * @return
+     * @return the SHA length (256, 384, or 512)
      */
     public int getShaLength() {
         return shaLength;
     }
 
     /**
+     * Retrieves the type flag of this algorithm.
      *
-     * @return
+     * @return the type flag (1 for HMAC, 2 for RSA, 3 for ECDSA)
      */
     public int getTypeFlag() {
         return typeFlag;
     }
 
     /**
+     * Retrieves the JCA-compliant name of this algorithm.
      *
-     * @return
+     * @return the algorithm name (e.g., "HmacSHA256", "SHA256withRSA")
      */
     public String getAlgorithm() {
         return algorithm;

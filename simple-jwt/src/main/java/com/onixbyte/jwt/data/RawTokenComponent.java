@@ -18,10 +18,15 @@
 package com.onixbyte.jwt.data;
 
 /**
+ * A record representing the raw components of a JSON Web Token (JWT).
+ * <p>
+ * Holds the header, payload, and signature of a JWT as strings, typically in their Base64 URL-encoded
+ * form as extracted from a token string. This record is used to facilitate parsing and processing
+ * of JWTs without decoding or validating their contents.
  *
- * @param header
- * @param payload
- * @param signature
+ * @param header    the Base64 URL-encoded header string of the JWT
+ * @param payload   the Base64 URL-encoded payload string of the JWT
+ * @param signature the Base64 URL-encoded signature string of the JWT
  * @author zihluwang
  */
 public record RawTokenComponent(

@@ -20,7 +20,14 @@ package com.onixbyte.jwt.constant;
 import java.util.List;
 
 /**
+ * Utility class defining standard registered claim names for JSON Web Tokens (JWTs).
+ * <p>
+ * Provides constants representing the registered claims as defined in RFC 7519. These claims are
+ * used in the payload section of a JWT to convey metadata about the token, such as its issuer,
+ * subject, and validity period. All claims are optional but widely recognised in
+ * JWT implementations.
  *
+ * @author zihluwang
  */
 public final class RegisteredClaims {
 
@@ -73,6 +80,13 @@ public final class RegisteredClaims {
      */
     public static final String TOKEN_ID = "jti";
 
+    /**
+     * An immutable list of all registered claim names defined in this class.
+     * <p>
+     * Contains the values of {@link #ISSUER}, {@link #SUBJECT}, {@link #AUDIENCE},
+     * {@link #EXPIRES_AT}, {@link #NOT_BEFORE}, {@link #ISSUED_AT}, and {@link #TOKEN_ID} for
+     * convenient iteration or lookup.
+     */
     public static final List<String> VALUES = List.of(ISSUER, SUBJECT, AUDIENCE, EXPIRES_AT, NOT_BEFORE, ISSUED_AT, TOKEN_ID);
 
 }
