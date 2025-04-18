@@ -367,6 +367,11 @@ public class TokenPayload {
         return _payload;
     }
 
+    /**
+     * Check the given claim name, make sure the name will not be one of the registered claim name.
+     *
+     * @param name a claim name
+     */
     private void checkClaimName(String name) {
         if (RegisteredClaims.VALUES.contains(name)) {
             throw new IllegalStateException("Please set registered claims with pre-defined methods");
