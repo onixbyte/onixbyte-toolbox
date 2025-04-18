@@ -227,11 +227,98 @@ public class TokenPayload {
      * @throws IllegalStateException if the claim name is a registered claim
      */
     public TokenPayload withClaim(String name, String value) {
-        if (RegisteredClaims.VALUES.contains(name)) {
-            throw new IllegalStateException("Please set registered claims with pre-defined methods");
-        }
+        checkClaimName(name);
 
         this.payload.put(name, value);
+        return this;
+    }
+
+    /**
+     * Adds a custom claim to the JWT payload.
+     * <p>
+     * Stores a custom key-value pair in the payload, provided the key is not a registered claim.
+     * Registered claims must be set using their dedicated methods to ensure proper handling.
+     *
+     * @param name  the name of the custom claim
+     * @param value the value of the custom claim
+     * @return this {@link TokenPayload} instance for method chaining
+     * @throws IllegalStateException if the claim name is a registered claim
+     */
+    public TokenPayload withClaim(String name, Long value) {
+        checkClaimName(name);
+
+        this.payload.put(name, value);
+        return this;
+    }
+
+    /**
+     * Adds a custom claim to the JWT payload.
+     * <p>
+     * Stores a custom key-value pair in the payload, provided the key is not a registered claim.
+     * Registered claims must be set using their dedicated methods to ensure proper handling.
+     *
+     * @param name  the name of the custom claim
+     * @param value the value of the custom claim
+     * @return this {@link TokenPayload} instance for method chaining
+     * @throws IllegalStateException if the claim name is a registered claim
+     */
+    public TokenPayload withClaim(String name, Double value) {
+        checkClaimName(name);
+
+        this.payload.put(name, value);
+        return this;
+    }
+
+    /**
+     * Adds a custom claim to the JWT payload.
+     * <p>
+     * Stores a custom key-value pair in the payload, provided the key is not a registered claim.
+     * Registered claims must be set using their dedicated methods to ensure proper handling.
+     *
+     * @param name  the name of the custom claim
+     * @param value the value of the custom claim
+     * @return this {@link TokenPayload} instance for method chaining
+     * @throws IllegalStateException if the claim name is a registered claim
+     */
+    public TokenPayload withClaim(String name, Boolean value) {
+        checkClaimName(name);
+
+        this.payload.put(name, value);
+        return this;
+    }
+
+    /**
+     * Adds a custom claim to the JWT payload.
+     * <p>
+     * Stores a custom key-value pair in the payload, provided the key is not a registered claim.
+     * Registered claims must be set using their dedicated methods to ensure proper handling.
+     *
+     * @param name  the name of the custom claim
+     * @param value the value of the custom claim
+     * @return this {@link TokenPayload} instance for method chaining
+     * @throws IllegalStateException if the claim name is a registered claim
+     */
+    public TokenPayload withClaim(String name, LocalDateTime value) {
+        checkClaimName(name);
+
+        this.payload.put(name, value);
+        return this;
+    }
+
+    /**
+     * Adds a custom claim with null value to the JWT payload.
+     * <p>
+     * Stores a custom key-value pair in the payload, provided the key is not a registered claim.
+     * Registered claims must be set using their dedicated methods to ensure proper handling.
+     *
+     * @param name the name of the custom claim
+     * @return this {@link TokenPayload} instance for method chaining
+     * @throws IllegalStateException if the claim name is a registered claim
+     */
+    public TokenPayload withNullClaim(String name) {
+        checkClaimName(name);
+
+        this.payload.put(name, null);
         return this;
     }
 
@@ -261,28 +348,28 @@ public class TokenPayload {
         Optional.of(audiences)
                 .filter((aud) -> !aud.isEmpty())
                 .ifPresent((aud) -> _payload.put(RegisteredClaims.AUDIENCE, aud));
-
         Optional.ofNullable(subject)
                 .filter((sub) -> !sub.isBlank())
                 .ifPresent((sub) -> _payload.put(RegisteredClaims.SUBJECT, subject));
-
         Optional.ofNullable(expiresAt)
                 .ifPresent((exp) -> _payload.put(RegisteredClaims.EXPIRES_AT, exp));
-
         Optional.ofNullable(tokenId)
                 .filter((jti) -> !jti.isBlank())
                 .ifPresent((jti) -> _payload.put(RegisteredClaims.TOKEN_ID, jti));
-
         Optional.ofNullable(issuer)
                 .filter((iss) -> !iss.isBlank())
                 .ifPresent((iss) -> _payload.put(RegisteredClaims.ISSUER, iss));
-
         Optional.ofNullable(issuedAt)
                 .ifPresent((iat) -> _payload.put(RegisteredClaims.ISSUED_AT, iat));
-
         Optional.ofNullable(notBefore)
                 .ifPresent((nbf) -> _payload.put(RegisteredClaims.NOT_BEFORE, nbf));
 
         return _payload;
+    }
+
+    private void checkClaimName(String name) {
+        if (RegisteredClaims.VALUES.contains(name)) {
+            throw new IllegalStateException("Please set registered claims with pre-defined methods");
+        }
     }
 }
