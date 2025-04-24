@@ -49,4 +49,29 @@ public interface KeyLoader {
      */
     PublicKey loadPublicKey(String pemKeyText);
 
+    /**
+     * Retrieves the raw content of a PEM formatted key by removing unnecessary headers, footers,
+     * and new line characters.
+     *
+     * <p>
+     * This method processes the provided PEM key text to return a cleaned string that contains
+     * only the key content. The method strips away the
+     * {@code "-----BEGIN (EC )?(PRIVATE|PUBLIC) KEY-----"} and
+     * {@code "-----END (EC )?(PRIVATE|PUBLIC) KEY-----"} lines, as well as any new line characters,
+     * resulting in a continuous string representation of the key, which can be used for further
+     * cryptographic operations.
+     *
+     * @param pemKeyText the PEM formatted key as a string, which may include headers, footers and
+     *                   line breaks
+     * @return a string containing the raw key content devoid of  any unnecessary formatting
+     * or whitespace
+     */
+    default String getRawContent(String pemKeyText) {
+        // remove all unnecessary parts of the pem key text
+        return pemKeyText
+                .replaceAll("-----BEGIN (EC )?(PRIVATE|PUBLIC) KEY-----", "")
+                .replaceAll("-----END (EC )?(PRIVATE|PUBLIC) KEY-----", "")
+                .replaceAll("\n", "");
+    }
+
 }

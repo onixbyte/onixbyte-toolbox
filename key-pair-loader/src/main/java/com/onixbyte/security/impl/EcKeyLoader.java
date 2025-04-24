@@ -82,11 +82,7 @@ public class EcKeyLoader implements KeyLoader {
     @Override
     public ECPrivateKey loadPrivateKey(String pemKeyText) {
         try {
-            // remove all unnecessary parts of the pem key text
-            pemKeyText = pemKeyText
-                    .replaceAll("-----BEGIN (EC )?PRIVATE KEY-----", "")
-                    .replaceAll("-----END (EC )?PRIVATE KEY-----", "")
-                    .replaceAll("\n", "");
+            pemKeyText = getRawContent(pemKeyText);
             var decodedKeyString = decoder.decode(pemKeyText);
             var keySpec = new PKCS8EncodedKeySpec(decodedKeyString);
 
@@ -112,11 +108,7 @@ public class EcKeyLoader implements KeyLoader {
     @Override
     public ECPublicKey loadPublicKey(String pemKeyText) {
         try {
-            // remove all unnecessary parts of the pem key text
-            pemKeyText = pemKeyText
-                    .replaceAll("-----BEGIN (EC )?PUBLIC KEY-----", "")
-                    .replaceAll("-----END (EC )?PUBLIC KEY-----", "")
-                    .replaceAll("\n", "");
+            pemKeyText = getRawContent(pemKeyText);
             var keyBytes = decoder.decode(pemKeyText);
             var spec = new X509EncodedKeySpec(keyBytes);
             var key = keyFactory.generatePublic(spec);
