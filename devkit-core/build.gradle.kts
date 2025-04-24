@@ -59,7 +59,8 @@ dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
 
-    testImplementation(libs.junit)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
 }
 
 tasks.test {
