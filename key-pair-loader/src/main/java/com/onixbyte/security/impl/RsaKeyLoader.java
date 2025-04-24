@@ -29,11 +29,32 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
+/**
+ * A class responsible for loading RSA keys from PEM formatted text.
+ * <p>
+ * This class implements the {@link KeyLoader} interface and provides methods to load both private
+ * and public RSA keys. The keys are expected to be in the standard PEM format, which includes
+ * Base64-encoded key content surrounded by header and footer lines. The class handles the decoding
+ * of Base64 content and the generation of keys using the RSA key factory.
+ * <p>
+ * Any exceptions encountered during the loading process are encapsulated in a
+ * {@link KeyLoadingException}, allowing for flexible error handling.
+ *
+ * @author siujamo
+ * @see KeyLoader
+ * @see KeyLoadingException
+ */
 public class RsaKeyLoader implements KeyLoader {
 
     private final Base64.Decoder decoder;
     private final KeyFactory keyFactory;
 
+    /**
+     * Constructs an instance of {@code RsaKeyLoader}.
+     * <p>
+     * This constructor initialises the Base64 decoder and the RSA {@link KeyFactory}. It may throw
+     * a {@link KeyLoadingException} if the RSA algorithm is not available.
+     */
     public RsaKeyLoader() {
         try {
             this.decoder = Base64.getDecoder();
@@ -43,6 +64,17 @@ public class RsaKeyLoader implements KeyLoader {
         }
     }
 
+    /**
+     * Loads an RSA private key from a given PEM formatted key text.
+     * <p>
+     * This method extracts the raw key content from the provided PEM text, decodes the
+     * Base64-encoded content, and generates an instance of {@link RSAPrivateKey}. If the key cannot
+     * be loaded due to invalid specifications or types, a {@link KeyLoadingException} is thrown.
+     *
+     * @param pemKeyText the PEM formatted private key text
+     * @return an instance of {@link RSAPrivateKey}
+     * @throws KeyLoadingException if the key loading process encounters an error
+     */
     @Override
     public RSAPrivateKey loadPrivateKey(String pemKeyText) {
         // Extract the raw key content
@@ -67,6 +99,17 @@ public class RsaKeyLoader implements KeyLoader {
         }
     }
 
+    /**
+     * Loads an RSA public key from a given PEM formatted key text.
+     * <p>
+     * This method extracts the raw key content from the provided PEM text, decodes the
+     * Base64-encoded content, and generates an instance of {@link RSAPublicKey}. If the key cannot
+     * be loaded due to invalid specifications or types, a {@link KeyLoadingException} is thrown.
+     *
+     * @param pemKeyText the PEM formatted public key text
+     * @return an instance of {@link RSAPublicKey}
+     * @throws KeyLoadingException if the key loading process encounters an error
+     */
     @Override
     public RSAPublicKey loadPublicKey(String pemKeyText) {
         // Extract the raw key content
