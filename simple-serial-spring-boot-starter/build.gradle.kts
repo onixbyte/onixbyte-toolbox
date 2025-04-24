@@ -62,7 +62,8 @@ dependencies {
     implementation(libs.spring.boot.starter.redis)
     annotationProcessor(libs.spring.boot.configuration.processor)
 
-    testImplementation(libs.junit)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
     testImplementation(libs.spring.boot.starter.test)
 }
 

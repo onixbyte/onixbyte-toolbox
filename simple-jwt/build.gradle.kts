@@ -42,7 +42,8 @@ dependencies {
     api(project(":devkit-utils"))
     implementation(libs.jackson.core)
     implementation(libs.jackson.databind)
-    testImplementation(libs.junit)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
 }
 
 tasks.test {

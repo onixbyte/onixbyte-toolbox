@@ -55,11 +55,16 @@ dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
     api(project(":devkit-core"))
-    testImplementation(libs.junit)
+    testImplementation(libs.jwt)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
 }
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
 publishing {

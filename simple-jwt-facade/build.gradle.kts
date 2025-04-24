@@ -59,7 +59,8 @@ dependencies {
     api(project(":devkit-utils"))
     api(project(":guid"))
 
-    testImplementation(libs.junit)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
 }
 
 tasks.test {
