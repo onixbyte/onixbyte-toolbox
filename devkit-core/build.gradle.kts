@@ -56,11 +56,10 @@ dependencies {
     val logbackVersion: String by project
     val junitVersion: String by project
 
-    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    compileOnly(libs.slf4j)
+    implementation(libs.logback)
 
-    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation(libs.junit)
 }
 
 tasks.test {

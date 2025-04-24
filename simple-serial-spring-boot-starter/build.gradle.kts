@@ -52,27 +52,18 @@ tasks.withType<Jar> {
 }
 
 dependencies {
-    val slf4jVersion: String by project
-    val logbackVersion: String by project
-    val junitVersion: String by project
-    val jacksonVersion: String by project
-    val springBootVersion: String by project
+    compileOnly(libs.slf4j)
+    implementation(libs.logback)
 
-    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation(libs.jackson.databind)
+    implementation(libs.spring.boot.autoconfigure)
+    implementation(libs.spring.boot.starter.logging)
+    implementation(libs.spring.boot.configuration.processor)
+    implementation(libs.spring.boot.starter.redis)
+    annotationProcessor(libs.spring.boot.configuration.processor)
 
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-data-redis:$springBootVersion")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-
-    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(libs.junit)
+    testImplementation(libs.spring.boot.starter.test)
 }
 
 tasks.test {

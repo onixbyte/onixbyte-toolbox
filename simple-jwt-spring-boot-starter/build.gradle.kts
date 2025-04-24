@@ -52,29 +52,19 @@ tasks.withType<Jar> {
 }
 
 dependencies {
-    val slf4jVersion: String by project
-    val logbackVersion: String by project
-    val junitVersion: String by project
-    val javaJwtVersion: String by project
-    val jacksonVersion: String by project
-    val springBootVersion: String by project
+    compileOnly(libs.slf4j)
+    implementation(libs.logback)
 
-    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    api(project(":guid"))
+    api(project(":simple-jwt-facade"))
+    api(project(":simple-jwt-authzero"))
+    implementation(libs.spring.boot.autoconfigure)
+    implementation(libs.spring.boot.starter.logging)
+    implementation(libs.spring.boot.configuration.processor)
+    annotationProcessor(libs.spring.boot.configuration.processor)
 
-    implementation(project(":guid"))
-    implementation(project(":simple-jwt-facade"))
-    compileOnly("com.auth0:java-jwt:$javaJwtVersion")
-    compileOnly(project(":simple-jwt-authzero"))
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-
-    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation(libs.junit)
+    testImplementation(libs.spring.boot.starter.test)
 }
 
 java {
