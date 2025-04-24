@@ -52,22 +52,16 @@ tasks.withType<Jar> {
 }
 
 dependencies {
-    val slf4jVersion: String by project
-    val logbackVersion: String by project
-    val junitVersion: String by project
-    val springBootVersion: String by project
+    compileOnly(libs.slf4j)
+    implementation(libs.logback)
+    api(project(":devkit-core"))
+    api(project(":devkit-utils"))
+    implementation(libs.spring.boot.autoconfigure)
+    implementation(libs.spring.boot.starter.logging)
+    implementation(libs.spring.boot.configuration.processor)
 
-    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
-    implementation(project(":devkit-core"))
-    implementation(project(":devkit-utils"))
-    implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
-    implementation("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation(libs.junit)
+    testImplementation(libs.spring.boot.starter.test)
 }
 
 tasks.test {

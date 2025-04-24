@@ -52,24 +52,17 @@ tasks.withType<Jar> {
 }
 
 dependencies {
-    val slf4jVersion: String by project
-    val logbackVersion: String by project
-    val junitVersion: String by project
-    val jacksonVersion: String by project
-    val javaJwtVersion: String by project
+    compileOnly(libs.slf4j)
+    implementation(libs.logback)
 
-    compileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    api(project(":devkit-utils"))
+    api(project(":guid"))
+    api(project(":key-pair-loader"))
+    api(project(":simple-jwt-facade"))
+    api(libs.jackson.databind)
+    api(libs.jwt)
 
-    implementation(project(":devkit-utils"))
-    implementation(project(":guid"))
-    implementation(project(":key-pair-loader"))
-    implementation(project(":simple-jwt-facade"))
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    implementation("com.auth0:java-jwt:$javaJwtVersion")
-
-    testCompileOnly("org.slf4j:slf4j-api:$slf4jVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+    testImplementation(libs.junit)
 }
 
 tasks.test {
