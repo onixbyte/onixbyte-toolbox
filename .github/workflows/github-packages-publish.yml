@@ -72,7 +72,7 @@ jobs:
 
       - name: Create Deployment on Central Publisher Portal
         run: |
-          curl -X 'POST' \
+          curl --fail -X 'POST' \
           'https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.onixbyte?publishing_type=user_managed' \
           -H 'accept: */*' \
           -H 'Authorization: Bearer ${{ secrets.MAVEN_PORTAL_TOKEN }}' \
