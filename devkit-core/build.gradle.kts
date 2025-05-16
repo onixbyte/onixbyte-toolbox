@@ -52,10 +52,6 @@ tasks.withType<Jar> {
 }
 
 dependencies {
-    val slf4jVersion: String by project
-    val logbackVersion: String by project
-    val junitVersion: String by project
-
     compileOnly(libs.slf4j)
     implementation(libs.logback)
 

@@ -55,7 +55,7 @@ dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
     api(project(":devkit-core"))
-    testImplementation(libs.jwt)
+    testImplementation(libs.jwt.core)
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
 }

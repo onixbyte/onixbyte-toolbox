@@ -56,15 +56,15 @@ dependencies {
     implementation(libs.logback)
 
     implementation(libs.jackson.databind)
-    implementation(libs.spring.boot.autoconfigure)
-    implementation(libs.spring.boot.starter.logging)
-    implementation(libs.spring.boot.configuration.processor)
-    implementation(libs.spring.boot.starter.redis)
-    annotationProcessor(libs.spring.boot.configuration.processor)
+    implementation(libs.springBoot.autoconfigure)
+    implementation(libs.springBoot.starter.logging)
+    implementation(libs.springBoot.configurationProcessor)
+    implementation(libs.springBoot.starter.redis)
+    annotationProcessor(libs.springBoot.configurationProcessor)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
-    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.springBoot.starter.test)
 }
 
 tasks.test {
