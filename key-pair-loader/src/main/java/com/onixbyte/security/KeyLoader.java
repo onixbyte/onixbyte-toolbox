@@ -69,8 +69,8 @@ public interface KeyLoader {
     default String getRawContent(String pemKeyText) {
         // remove all unnecessary parts of the pem key text
         return pemKeyText
-                .replaceAll("-----BEGIN (EC )?(PRIVATE|PUBLIC) KEY-----", "")
-                .replaceAll("-----END (EC )?(PRIVATE|PUBLIC) KEY-----", "")
+                .replaceAll("-----BEGIN ((EC )|(RSA ))?(PRIVATE|PUBLIC) KEY-----", "")
+                .replaceAll("-----END ((EC )|(RSA ))?(PRIVATE|PUBLIC) KEY-----", "")
                 .replaceAll("\n", "");
     }
 
