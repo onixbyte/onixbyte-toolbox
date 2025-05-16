@@ -56,13 +56,13 @@ dependencies {
     implementation(libs.logback)
     api(project(":devkit-core"))
     api(project(":devkit-utils"))
-    implementation(libs.spring.boot.autoconfigure)
-    implementation(libs.spring.boot.starter.logging)
-    implementation(libs.spring.boot.configuration.processor)
+    implementation(libs.springBoot.autoconfigure)
+    implementation(libs.springBoot.starter.logging)
+    implementation(libs.springBoot.configurationProcessor)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
-    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.springBoot.starter.test)
 }
 
 tasks.test {

@@ -60,7 +60,7 @@ dependencies {
     api(project(":key-pair-loader"))
     api(project(":simple-jwt-facade"))
     api(libs.jackson.databind)
-    api(libs.jwt)
+    api(libs.jwt.core)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)

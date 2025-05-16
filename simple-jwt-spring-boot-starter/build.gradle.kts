@@ -58,14 +58,14 @@ dependencies {
     api(project(":guid"))
     api(project(":simple-jwt-facade"))
     api(project(":simple-jwt-authzero"))
-    implementation(libs.spring.boot.autoconfigure)
-    implementation(libs.spring.boot.starter.logging)
-    implementation(libs.spring.boot.configuration.processor)
-    annotationProcessor(libs.spring.boot.configuration.processor)
+    implementation(libs.springBoot.autoconfigure)
+    implementation(libs.springBoot.starter.logging)
+    implementation(libs.springBoot.configurationProcessor)
+    annotationProcessor(libs.springBoot.configurationProcessor)
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
-    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(libs.springBoot.starter.test)
 }
 
 java {
