@@ -136,20 +136,20 @@ public final class BranchUtil {
      * Handles the result of the boolean expressions by executing the appropriate handler based
      * on the result.
      * <p>
-     * If the result is {@code true}, the {@code trueHandler} is executed. If the result is
+     * If the result is {@code true}, the {@code trueSupplier} is executed. If the result is
      * {@code false} and an {@code falseSupplier} is provided, it is executed.
      * <p>
-     * Returns the result of the executed handler.
+     * Returns the result of the executed supplier.
      *
      * @param <T>           the type of the result to be handled by the methods
-     * @param trueHandler   the handler to be executed if the result is {@code true}
-     * @param falseSupplier the handler to be executed if the result is {@code false} (optional)
-     * @return the result of the executed handler, or {@code null} if no {@code falseSupplier} is
+     * @param trueSupplier  the supplier to be executed if the result is {@code true}
+     * @param falseSupplier the supplier to be executed if the result is {@code false} (optional)
+     * @return the result of the executed supplier, or {@code null} if no {@code falseSupplier} is
      * provided and the result of the evaluation is {@code false}
      */
-    public <T> T thenSupply(Supplier<T> trueHandler, Supplier<T> falseSupplier) {
-        if (this.result && Objects.nonNull(trueHandler)) {
-            return trueHandler.get();
+    public <T> T thenSupply(Supplier<T> trueSupplier, Supplier<T> falseSupplier) {
+        if (this.result && Objects.nonNull(trueSupplier)) {
+            return trueSupplier.get();
         }
 
         if (Objects.isNull(falseSupplier)) {
@@ -166,7 +166,7 @@ public final class BranchUtil {
      * Returns the result of the executed handler.
      *
      * @param <T>          the type of the result to be handled by the methods
-     * @param trueSupplier the handler to be executed if the result is {@code true}
+     * @param trueSupplier the supplier to be executed if the result is {@code true}
      * @return the result of the executed handler, or {@code null} if result of evaluation is {@code false}
      */
     public <T> T thenSupply(Supplier<T> trueSupplier) {
@@ -180,7 +180,7 @@ public final class BranchUtil {
      * If the result is {@code true}, the {@code ifHandler} is executed. If the result is
      * {@code false} and an {@code elseHandler} is provided, it is executed.
      *
-     * @param trueHandler   the handler to be executed if the result is {@code true}
+     * @param trueHandler  the handler to be executed if the result is {@code true}
      * @param falseHandler the handler to be executed if the result is {@code false} (optional)
      */
     public void then(Runnable trueHandler, Runnable falseHandler) {
@@ -212,8 +212,8 @@ public final class BranchUtil {
      * <b>Note:</b> {@link BranchUtil} is not responsible for getting a raw boolean result, consider use
      * {@link BoolUtil} to replace.
      *
-     * @see BoolUtil
      * @return the result
+     * @see BoolUtil
      */
     @Deprecated(forRemoval = true)
     public boolean getResult() {
