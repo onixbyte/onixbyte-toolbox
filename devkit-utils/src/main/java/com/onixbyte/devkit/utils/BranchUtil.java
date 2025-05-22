@@ -137,14 +137,14 @@ public final class BranchUtil {
      * on the result.
      * <p>
      * If the result is {@code true}, the {@code trueHandler} is executed. If the result is
-     * {@code false} and an {@code elseHandler} is provided, it is executed.
+     * {@code false} and an {@code falseSupplier} is provided, it is executed.
      * <p>
      * Returns the result of the executed handler.
      *
      * @param <T>           the type of the result to be handled by the methods
      * @param trueHandler   the handler to be executed if the result is {@code true}
      * @param falseSupplier the handler to be executed if the result is {@code false} (optional)
-     * @return the result of the executed handler, or {@code null} if no {@code elseHandler} is
+     * @return the result of the executed handler, or {@code null} if no {@code falseSupplier} is
      * provided and the result of the evaluation is {@code false}
      */
     public <T> T thenSupply(Supplier<T> trueHandler, Supplier<T> falseSupplier) {
@@ -167,8 +167,7 @@ public final class BranchUtil {
      *
      * @param <T>          the type of the result to be handled by the methods
      * @param trueSupplier the handler to be executed if the result is {@code true}
-     * @return the result of the executed handler, or {@code null} if result of evaluation is
-     * {@code false}
+     * @return the result of the executed handler, or {@code null} if result of evaluation is {@code false}
      */
     public <T> T thenSupply(Supplier<T> trueSupplier) {
         return thenSupply(trueSupplier, null);
@@ -205,6 +204,20 @@ public final class BranchUtil {
      */
     public void then(Runnable trueHandler) {
         then(trueHandler, null);
+    }
+
+    /**
+     * Get the boolean result.
+     * <p>
+     * <b>Note:</b> {@link BranchUtil} is not responsible for getting a raw boolean result, consider use
+     * {@link BoolUtil} to replace.
+     *
+     * @see BoolUtil
+     * @return the result
+     */
+    @Deprecated(forRemoval = true)
+    public boolean getResult() {
+        return result;
     }
 
 }
