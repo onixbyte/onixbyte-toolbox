@@ -17,9 +17,6 @@
 
 package com.onixbyte.devkit.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
@@ -66,17 +63,19 @@ import java.util.function.Supplier;
  * The {@link #and(Boolean...)} and {@link #or(Boolean...)} methods accept any number of boolean
  * expressions.
  *
- * @param <T> the type of the result to be handled by the methods
  * @author zihluwang
- * @version 1.6.1
+ * @version 2.1.3
  * @see java.util.function.Supplier
  * @see java.util.function.BooleanSupplier
  * @see java.lang.Runnable
  * @since 1.0.0
  */
-public final class BranchUtil<T> {
+public final class BranchUtil {
 
-    private final static Logger log = LoggerFactory.getLogger(BranchUtil.class);
+    /**
+     * The final result of the boolean expression.
+     */
+    private final boolean result;
 
     /**
      * Create a {@code BranchUtil} instance.
@@ -92,11 +91,10 @@ public final class BranchUtil<T> {
      * boolean expressions.
      *
      * @param values the boolean expressions to be evaluated
-     * @param <T>    the type of the result to be handled by the methods
      * @return a {@code BranchUtil} instance representing the result of the logical OR operation
      */
-    public static <T> BranchUtil<T> or(Boolean... values) {
-        return new BranchUtil<>(BoolUtil.or(values));
+    public static BranchUtil or(Boolean... values) {
+        return new BranchUtil(BoolUtil.or(values));
     }
 
     /**
@@ -104,11 +102,10 @@ public final class BranchUtil<T> {
      * boolean expressions.
      *
      * @param values the boolean expressions to be evaluated
-     * @param <T>    the type of the result to be handled by the methods
      * @return a {@code BranchUtil} instance representing the result of the logical AND operation
      */
-    public static <T> BranchUtil<T> and(Boolean... values) {
-        return new BranchUtil<>(BoolUtil.and(values));
+    public static BranchUtil and(Boolean... values) {
+        return new BranchUtil(BoolUtil.and(values));
     }
 
     /**
@@ -116,12 +113,11 @@ public final class BranchUtil<T> {
      * boolean suppliers.
      *
      * @param valueSuppliers the boolean suppliers to be evaluated
-     * @param <T>            the type of the result to be handled by the methods
      * @return a {@code BranchUtil} instance representing the result of the
      * logical OR operation
      */
-    public static <T> BranchUtil<T> or(BooleanSupplier... valueSuppliers) {
-        return new BranchUtil<>(BoolUtil.or(valueSuppliers));
+    public static BranchUtil or(BooleanSupplier... valueSuppliers) {
+        return new BranchUtil(BoolUtil.or(valueSuppliers));
     }
 
     /**
@@ -129,38 +125,38 @@ public final class BranchUtil<T> {
      * boolean suppliers.
      *
      * @param valueSuppliers the boolean suppliers to be evaluated
-     * @param <T>            the type of the result to be handled by the methods
      * @return a {@code BranchUtil} instance representing the result of the
      * logical AND operation
      */
-    public static <T> BranchUtil<T> and(BooleanSupplier... valueSuppliers) {
-        return new BranchUtil<>(BoolUtil.and(valueSuppliers));
+    public static BranchUtil and(BooleanSupplier... valueSuppliers) {
+        return new BranchUtil(BoolUtil.and(valueSuppliers));
     }
 
     /**
      * Handles the result of the boolean expressions by executing the appropriate handler based
      * on the result.
      * <p>
-     * If the result is {@code true}, the {@code ifHandler} is executed. If the result is
+     * If the result is {@code true}, the {@code trueHandler} is executed. If the result is
      * {@code false} and an {@code elseHandler} is provided, it is executed.
      * <p>
      * Returns the result of the executed handler.
      *
-     * @param ifHandler   the handler to be executed if the result is {@code true}
-     * @param elseHandler the handler to be executed if the result is {@code false} (optional)
+     * @param <T>           the type of the result to be handled by the methods
+     * @param trueHandler   the handler to be executed if the result is {@code true}
+     * @param falseSupplier the handler to be executed if the result is {@code false} (optional)
      * @return the result of the executed handler, or {@code null} if no {@code elseHandler} is
      * provided and the result of the evaluation is {@code false}
      */
-    public T handle(Supplier<T> ifHandler, Supplier<T> elseHandler) {
-        if (this.result && Objects.nonNull(ifHandler)) {
-            return ifHandler.get();
+    public <T> T thenSupply(Supplier<T> trueHandler, Supplier<T> falseSupplier) {
+        if (this.result && Objects.nonNull(trueHandler)) {
+            return trueHandler.get();
         }
 
-        if (Objects.isNull(elseHandler)) {
+        if (Objects.isNull(falseSupplier)) {
             return null;
         }
 
-        return elseHandler.get();
+        return falseSupplier.get();
     }
 
     /**
@@ -169,12 +165,13 @@ public final class BranchUtil<T> {
      * <p>
      * Returns the result of the executed handler.
      *
-     * @param ifHandler the handler to be executed if the result is {@code true}
+     * @param <T>          the type of the result to be handled by the methods
+     * @param trueSupplier the handler to be executed if the result is {@code true}
      * @return the result of the executed handler, or {@code null} if result of evaluation is
      * {@code false}
      */
-    public T handle(Supplier<T> ifHandler) {
-        return handle(ifHandler, null);
+    public <T> T thenSupply(Supplier<T> trueSupplier) {
+        return thenSupply(trueSupplier, null);
     }
 
     /**
@@ -184,44 +181,30 @@ public final class BranchUtil<T> {
      * If the result is {@code true}, the {@code ifHandler} is executed. If the result is
      * {@code false} and an {@code elseHandler} is provided, it is executed.
      *
-     * @param ifHandler   the handler to be executed if the result is {@code true}
-     * @param elseHandler the handler to be executed if the result is {@code false} (optional)
+     * @param trueHandler   the handler to be executed if the result is {@code true}
+     * @param falseHandler the handler to be executed if the result is {@code false} (optional)
      */
-    public void handle(Runnable ifHandler, Runnable elseHandler) {
-        if (this.result && Objects.nonNull(ifHandler)) {
-            ifHandler.run();
+    public void then(Runnable trueHandler, Runnable falseHandler) {
+        if (this.result && Objects.nonNull(trueHandler)) {
+            trueHandler.run();
             return;
         }
 
-        if (Objects.isNull(elseHandler)) {
+        if (Objects.isNull(falseHandler)) {
             return;
         }
 
-        elseHandler.run();
+        falseHandler.run();
     }
 
     /**
      * Handles the result of the boolean expressions by executing the provided handler if the
      * result is {@code true}.
      *
-     * @param ifHandler the handler to be executed if the result is {@code true}
+     * @param trueHandler the handler to be executed if the result is {@code true}
      */
-    public void handle(Runnable ifHandler) {
-        handle(ifHandler, null);
-    }
-
-    /**
-     * The final result of the boolean expression.
-     */
-    private final boolean result;
-
-    /**
-     * Get the boolean result.
-     *
-     * @return the result
-     */
-    public boolean getResult() {
-        return result;
+    public void then(Runnable trueHandler) {
+        then(trueHandler, null);
     }
 
 }
