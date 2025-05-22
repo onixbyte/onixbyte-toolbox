@@ -103,6 +103,13 @@ publishing {
                         email = "really@zihlu.wang"
                         timezone = "Asia/Hong_Kong"
                     }
+
+                    developer {
+                        id = "siujamo"
+                        name = "Siu Jam'o"
+                        email = "jamo.siu@outlook.com"
+                        timezone = "Asia/Shanghai"
+                    }
                 }
             }
 
