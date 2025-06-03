@@ -72,10 +72,10 @@ public final class PercentileCalculator {
      * @return a {@code Double} value representing the calculated percentile
      */
     public static Double calculatePercentile(List<Double> values, Double percentile) {
-        var sorted = values.stream().sorted().toList();
-        if (sorted.isEmpty()) {
+        if (values.isEmpty()) {
             throw new IllegalArgumentException("Unable to sort an empty list.");
         }
+        var sorted = values.stream().sorted().toList();
 
         var rank = percentile / 100. * (sorted.size() - 1);
         var lowerIndex = (int) Math.floor(rank);
