@@ -17,14 +17,10 @@
 
 package com.onixbyte.devkit.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -69,8 +65,6 @@ import java.util.Optional;
  * @since 1.0.0
  */
 public final class HashUtil {
-
-    private final static Logger log = LoggerFactory.getLogger(HashUtil.class);
 
     /**
      * Calculates the MD2 hash value of the specified string using the given charset.

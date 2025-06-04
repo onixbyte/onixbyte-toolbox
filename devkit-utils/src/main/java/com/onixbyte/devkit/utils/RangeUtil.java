@@ -17,9 +17,6 @@
 
 package com.onixbyte.devkit.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.stream.IntStream;
 
 /**
@@ -33,8 +30,6 @@ import java.util.stream.IntStream;
  * @see IntStream
  */
 public final class RangeUtil {
-
-    private final static Logger log = LoggerFactory.getLogger(RangeUtil.class);
 
     /**
      * Private constructor to prevent instantiation of this utility class.
@@ -68,7 +63,7 @@ public final class RangeUtil {
      */
     public static IntStream range(int end) {
         if (end <= 0) {
-            throw new IllegalArgumentException("Parameter [end] should not less than 0, provided is " +
+            throw new IllegalArgumentException("Parameter [end] should not be less than or equal to 0, provided: " +
                     end);
         }
         return IntStream.range(0, end);
@@ -81,6 +76,10 @@ public final class RangeUtil {
      * It creates a sequential, ordered {@code IntStream} that can be used for iteration or
      * further processing.
      * <p>
+     * If {@code start} is less than {@code end}, an ascending range (exclusive of {@code end})
+     * is generated. If {@code start} is greater than {@code end}, a descending range (exclusive of {@code end})
+     * is generated. If {@code start} equals {@code end}, an empty stream is returned.
+     * <p>
      * <b>Example Usage:</b>
      * <pre>{@code
      * RangeUtil.range(3, 8).forEach(System.out::println);
@@ -91,20 +90,32 @@ public final class RangeUtil {
      * // 5
      * // 6
      * // 7
+     *
+     * RangeUtil.range(8, 3).forEach(System.out::println);
+     *
+     * // Output:
+     * // 8
+     * // 7
+     * // 6
+     * // 5
+     * // 4
      * }</pre>
      *
      * @param start the starting value of the range (inclusive)
      * @param end   upper-bound of the range (exclusive)
-     * @return an {@code IntStream} of integers from {@code 0} (inclusive) to
-     * {@code end} (exclusive)
-     * @throws IllegalArgumentException if the given {@code end} value is less equal to 0
+     * @return an {@code IntStream} of integers in ascending or descending order, exclusive of {@code end}
      * @see IntStream
      */
     public static IntStream range(int start, int end) {
-        if (end >= start) {
-            throw new IllegalStateException("Parameter [start] should less than parameter [end].");
+        if (start == end) {
+            return IntStream.empty();
         }
-        return IntStream.range(start, end);
+        if (start < end) {
+            return IntStream.range(start, end);
+        } else {
+            // Descending range (exclusive of end)
+            return IntStream.iterate(start, n -> n > end, n -> n - 1);
+        }
     }
 
     /**
@@ -113,6 +124,8 @@ public final class RangeUtil {
      * <p>
      * It creates a sequential, ordered {@code IntStream} that can be used for iteration or
      * further processing.
+     * <p>
+     * The range includes both {@code start} and {@code end}.
      * <p>
      * <b>Example Usage:</b>
      * <pre>{@code
@@ -129,9 +142,7 @@ public final class RangeUtil {
      *
      * @param start the starting value of the range (inclusive)
      * @param end   upper-bound of the range (inclusive)
-     * @return an {@code IntStream} of integers from {@code 0} (inclusive) to
-     * {@code end} (inclusive)
-     * @throws IllegalArgumentException if the given {@code end} value is less equal to 0
+     * @return an {@code IntStream} of integers from {@code start} to {@code end} inclusive
      * @see IntStream
      */
     public static IntStream rangeClosed(int start, int end) {
@@ -139,28 +150,39 @@ public final class RangeUtil {
     }
 
     /**
-     * Generates a stream of integers starting from the specified {@code start} value, increment by
+     * Generates a stream of integers starting from the specified {@code start} value, incremented by
      * the specified {@code step}, up to the specified {@code end} value.
      * <p>
      * It creates a sequential, ordered {@code IntStream} that can be used for iteration or
      * further processing.
      * <p>
+     * The stream excludes the {@code end} value.
+     * <p>
      * <b>Example Usage:</b>
      * <pre>{@code
-     * RangeUtil.range(3, 8, 2).forEach(System.out::println);
+     * RangeUtil.range(3, 10, 2).forEach(System.out::println);
      *
      * // Output:
      * // 3
      * // 5
      * // 7
+     * // 9
+     *
+     * RangeUtil.range(10, 3, -2).forEach(System.out::println);
+     *
+     * // Output:
+     * // 10
+     * // 8
+     * // 6
+     * // 4
      * }</pre>
      *
      * @param start the starting value of the range (inclusive)
      * @param end   upper-bound of the range (exclusive)
-     * @param step  the increment (or decrement) between each value
-     * @return an {@code IntStream} of integers from {@code 0} (inclusive) to
-     * {@code end} (exclusive)
-     * @throws IllegalArgumentException if the given {@code end} value is less equal to 0
+     * @param step  the increment or decrement between each value (non-zero)
+     * @return an {@code IntStream} of integers from {@code start} to {@code end} exclusive stepping by {@code step}
+     * @throws IllegalArgumentException if {@code step} is zero or if {@code start} and {@code end} are inconsistent
+     *                                  with the direction imposed by {@code step}
      * @see IntStream
      */
     public static IntStream range(int start, int end, int step) {
@@ -170,7 +192,7 @@ public final class RangeUtil {
         if ((step > 0 && start >= end) || (step < 0 && start <= end)) {
             throw new IllegalArgumentException("Range parameters are inconsistent with the step value.");
         }
-        return IntStream.iterate(start, (n) -> n < end, (n) -> n + step);
+        return IntStream.iterate(start, (n) -> step > 0 ? n < end : n > end, (n) -> n + step);
     }
 
 }
