@@ -19,98 +19,113 @@ package com.onixbyte.devkit.utils;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.stream.IntStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RangeUtilTest {
 
-    // Test range(end) with normal positive end value
+    /**
+     * Tests generating ascending range from 0 up to end (exclusive).
+     */
     @Test
     void testRangeEndValid() {
-        IntStream stream = RangeUtil.range(5);
         int[] expected = {0, 1, 2, 3, 4};
-        assertArrayEquals(expected, stream.toArray());
+        assertArrayEquals(expected, RangeUtil.range(5).toArray());
     }
 
-    // Test range(end) with end less than or equal to zero should throw IllegalArgumentException
+    /**
+     * Tests that range(end) throws IllegalArgumentException for end less than or equal to zero.
+     */
     @Test
     void testRangeEndInvalidThrows() {
-        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException ex1 = assertThrows(IllegalArgumentException.class,
                 () -> RangeUtil.range(0));
-        assertTrue(exception1.getMessage().contains("Parameter [end] should not less than 0"));
+        assertTrue(ex1.getMessage().contains("should not be less than or equal to 0"));
 
-        IllegalArgumentException exception2 = assertThrows(IllegalArgumentException.class,
-                () -> RangeUtil.range(-5));
-        assertTrue(exception2.getMessage().contains("Parameter [end] should not less than 0"));
+        IllegalArgumentException ex2 = assertThrows(IllegalArgumentException.class,
+                () -> RangeUtil.range(-3));
+        assertTrue(ex2.getMessage().contains("should not be less than or equal to 0"));
     }
 
-    // Test range(start, end) with valid input where start < end
+    /**
+     * Tests ascending range where start is less than end.
+     */
     @Test
-    void testRangeStartEndValid() {
-        IntStream stream = RangeUtil.range(3, 8);
+    void testRangeStartEndAscending() {
         int[] expected = {3, 4, 5, 6, 7};
-        assertArrayEquals(expected, stream.toArray());
+        assertArrayEquals(expected, RangeUtil.range(3, 8).toArray());
     }
 
-    // Test range(start, end) where start >= end should throw IllegalStateException
+    /**
+     * Tests descending range where start is greater than end.
+     */
     @Test
-    void testRangeStartEndInvalidThrows() {
-        IllegalStateException exception = assertThrows(IllegalStateException.class,
-                () -> RangeUtil.range(8, 3));
-        assertTrue(exception.getMessage().contains("Parameter [start] should less than parameter [end]"));
-
-        // Also test equal values
-        IllegalStateException exceptionEqual = assertThrows(IllegalStateException.class,
-                () -> RangeUtil.range(5, 5));
-        assertTrue(exceptionEqual.getMessage().contains("Parameter [start] should less than parameter [end]"));
+    void testRangeStartEndDescending() {
+        int[] expected = {8, 7, 6, 5, 4};
+        assertArrayEquals(expected, RangeUtil.range(8, 3).toArray());
     }
 
-    // Test rangeClosed(start, end) generates inclusive ranges correctly
+    /**
+     * Tests empty stream when start equals end.
+     */
     @Test
-    void testRangeClosed() {
-        IntStream stream = RangeUtil.rangeClosed(3, 8);
+    void testRangeStartEqualsEndReturnsEmpty() {
+        assertEquals(0, RangeUtil.range(5, 5).count());
+    }
+
+    /**
+     * Tests that rangeClosed generates inclusive range in ascending order.
+     */
+    @Test
+    void testRangeClosedAscending() {
         int[] expected = {3, 4, 5, 6, 7, 8};
-        assertArrayEquals(expected, stream.toArray());
+        assertArrayEquals(expected, RangeUtil.rangeClosed(3, 8).toArray());
     }
 
-    // Test range(start, end, step) with positive step and valid parameters
+    /**
+     * Tests range method with positive step generating ascending sequence.
+     */
     @Test
-    void testRangeWithStepPositive() {
-        IntStream stream = RangeUtil.range(3, 10, 2);
-        int[] expected = {3, 5, 7, 9};
-        assertArrayEquals(expected, stream.toArray());
+    void testRangeWithPositiveStep() {
+        int[] expected = {2, 4, 6, 8};
+        assertArrayEquals(expected, RangeUtil.range(2, 10, 2).toArray());
     }
 
-    // Test range(start, end, step) with negative step and valid parameters (descending range)
+    /**
+     * Tests range method with negative step generating descending sequence.
+     */
     @Test
-    void testRangeWithStepNegative() {
-        IntStream stream = RangeUtil.range(10, 3, -2);
-        int[] expected = {10, 8, 6, 4};
-        assertArrayEquals(expected, stream.toArray());
+    void testRangeWithNegativeStep() {
+        int[] expected = {10, 7, 4, 1};
+        assertArrayEquals(expected, RangeUtil.range(10, 0, -3).toArray());
     }
 
-    // Test range(start, end, step) throws IllegalArgumentException if step is zero
+    /**
+     * Tests that passing zero step throws IllegalArgumentException.
+     */
     @Test
-    void testRangeWithStepZeroThrows() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+    void testRangeStepZeroThrows() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> RangeUtil.range(0, 10, 0));
-        assertEquals("Step value must not be zero.", exception.getMessage());
+        assertEquals("Step value must not be zero.", ex.getMessage());
     }
 
-    // Test range(start, end, step) throws if parameters inconsistent with step positive
+    /**
+     * Tests that range with positive step but invalid start/end throws IllegalArgumentException.
+     */
     @Test
-    void testRangeWithStepPositiveInvalidRangeThrows() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+    void testRangePositiveStepInvalidRangeThrows() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> RangeUtil.range(10, 5, 1));
-        assertEquals("Range parameters are inconsistent with the step value.", exception.getMessage());
+        assertEquals("Range parameters are inconsistent with the step value.", ex.getMessage());
     }
 
-    // Test range(start, end, step) throws if parameters inconsistent with step negative
+    /**
+     * Tests that range with negative step but invalid start/end throws IllegalArgumentException.
+     */
     @Test
-    void testRangeWithStepNegativeInvalidRangeThrows() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+    void testRangeNegativeStepInvalidRangeThrows() {
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
                 () -> RangeUtil.range(5, 10, -1));
-        assertEquals("Range parameters are inconsistent with the step value.", exception.getMessage());
+        assertEquals("Range parameters are inconsistent with the step value.", ex.getMessage());
     }
 }
