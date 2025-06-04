@@ -70,8 +70,6 @@ import java.util.Optional;
  */
 public final class HashUtil {
 
-    private final static Logger log = LoggerFactory.getLogger(HashUtil.class);
-
     /**
      * Calculates the MD2 hash value of the specified string using the given charset.
      *
