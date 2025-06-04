@@ -1,7 +1,6 @@
 # JDevKit
 
-![Static Badge](https://img.shields.io/badge/tag-v2.0.0-orange)
-![Static Badge](https://img.shields.io/badge/maven_central-v2.0.0-orange)
+![Static Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fonixbyte%2Fdevkit-bom%2Fmaven-metadata.xml&query=%2F%2Fmetadata%2Fversioning%2Flatest&label=version)
 ![Static Badge](https://img.shields.io/badge/licence-Apache_2.0-green)
 ![Static Badge](https://img.shields.io/badge/JDK-%E2%89%A517-blue)
 
