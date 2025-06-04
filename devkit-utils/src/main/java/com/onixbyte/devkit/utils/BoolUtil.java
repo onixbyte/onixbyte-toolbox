@@ -47,8 +47,6 @@ import java.util.function.BooleanSupplier;
  */
 public final class BoolUtil {
 
-    private final static Logger log = LoggerFactory.getLogger(BoolUtil.class);
-
     /**
      * Logical and calculation.
      *
