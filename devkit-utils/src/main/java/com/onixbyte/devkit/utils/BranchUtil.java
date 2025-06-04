@@ -206,18 +206,4 @@ public final class BranchUtil {
         then(trueHandler, null);
     }
 
-    /**
-     * Get the boolean result.
-     * <p>
-     * <b>Note:</b> {@link BranchUtil} is not responsible for getting a raw boolean result, consider use
-     * {@link BoolUtil} to replace.
-     *
-     * @return the result
-     * @see BoolUtil
-     */
-    @Deprecated(forRemoval = true)
-    public boolean getResult() {
-        return result;
-    }
-
 }
