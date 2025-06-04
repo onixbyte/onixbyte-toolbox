@@ -17,9 +17,6 @@
 
 package com.onixbyte.devkit.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.stream.IntStream;
 
 /**
@@ -33,8 +30,6 @@ import java.util.stream.IntStream;
  * @see IntStream
  */
 public final class RangeUtil {
-
-    private final static Logger log = LoggerFactory.getLogger(RangeUtil.class);
 
     /**
      * Private constructor to prevent instantiation of this utility class.
