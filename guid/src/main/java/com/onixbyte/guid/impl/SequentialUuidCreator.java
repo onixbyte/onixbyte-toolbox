@@ -33,8 +33,6 @@ import java.util.UUID;
  * <p>
  * The generated UUID adheres strictly to the layout and variant bits of UUID version 7 as defined in the specification.
  * </p>
- *
- * @implNote This class implements the {@link GuidCreator} interface, providing UUID instances as unique identifiers.
  */
 public class SequentialUuidCreator implements GuidCreator<UUID> {
 
