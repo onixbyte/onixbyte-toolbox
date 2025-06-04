@@ -27,6 +27,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -65,6 +66,7 @@ import java.util.Optional;
  * @see EnvironmentPostProcessor
  * @since 1.1.0 (3.3.2 of MyBatis-Plus)
  */
+@Deprecated(forRemoval = true)
 public class PropertyGuard implements EnvironmentPostProcessor {
 
     private final static Logger log = LoggerFactory.getLogger(PropertyGuard.class);
@@ -99,7 +101,11 @@ public class PropertyGuard implements EnvironmentPostProcessor {
                     for (var name : source.getPropertyNames()) {
                         if (source.getProperty(name) instanceof String str) {
                             if (str.startsWith("%s:".formatted(PREFIX))) {
-                                map.put(name, AesUtil.decrypt(str.substring(3), encryptionKey));
+                                try {
+                                    map.put(name, AesUtil.decrypt(str.substring(3), encryptionKey));
+                                } catch (GeneralSecurityException e) {
+                                    log.error("Unable to decrypt param {}", name);
+                                }
                             }
                         }
                     }
