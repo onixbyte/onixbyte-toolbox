@@ -85,8 +85,6 @@ import java.util.Map;
  */
 public final class MapUtil {
 
-    private final static Logger log = LoggerFactory.getLogger(MapUtil.class);
-
     /**
      * Converts an object to a map by mapping the field names to their corresponding values.
      *
