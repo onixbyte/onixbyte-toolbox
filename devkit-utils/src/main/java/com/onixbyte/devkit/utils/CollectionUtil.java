@@ -33,8 +33,6 @@ import java.util.function.Supplier;
  */
 public final class CollectionUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(CollectionUtil.class);
-
     /**
      * Private constructor to prevent instantiation of this utility class.
      */
@@ -68,7 +66,7 @@ public final class CollectionUtil {
             throw new IllegalArgumentException("Collection must not be null.");
         }
 
-        if (maxSize < 0) {
+        if (maxSize <= 0) {
             throw new IllegalArgumentException("maxSize must greater than 0.");
         }
 
