@@ -58,8 +58,6 @@ import java.util.Objects;
  */
 public final class Base64Util {
 
-    private final static Logger log = LoggerFactory.getLogger(Base64Util.class);
-
     /**
      * Ensure that there is only one Base64 Encoder.
      *
