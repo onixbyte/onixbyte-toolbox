@@ -64,7 +64,7 @@ public interface KeyLoader {
      * @see KeyFactory#generatePublic(KeySpec)
      */
     default RSAPublicKey loadPublicKey(String modulus, String exponent) {
-        throw new KeyLoadingException("This key loader does not support RSA Public key loading.");
+        throw new KeyLoadingException("This key loader does not support loading an RSA public key.");
     }
 
     /**
