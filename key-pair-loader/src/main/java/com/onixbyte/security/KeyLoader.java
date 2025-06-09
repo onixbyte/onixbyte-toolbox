@@ -17,8 +17,11 @@
 
 package com.onixbyte.security;
 
+import com.onixbyte.security.exception.KeyLoadingException;
+
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.interfaces.RSAPublicKey;
 
 /**
  * The {@code KeyLoader} class provides utility methods for loading keys pairs from PEM-formatted
@@ -48,6 +51,10 @@ public interface KeyLoader {
      * @return loaded private key
      */
     PublicKey loadPublicKey(String pemKeyText);
+
+    default RSAPublicKey loadPublicKey(String modulus, String exponent) {
+        throw new KeyLoadingException("This key loader does not support RSA Public key loading.");
+    }
 
     /**
      * Retrieves the raw content of a PEM formatted key by removing unnecessary headers, footers,
