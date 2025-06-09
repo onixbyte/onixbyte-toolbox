@@ -22,6 +22,7 @@ import com.onixbyte.security.exception.KeyLoadingException;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.interfaces.ECPublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.KeySpec;
 
@@ -65,6 +66,10 @@ public interface KeyLoader {
      */
     default RSAPublicKey loadPublicKey(String modulus, String exponent) {
         throw new KeyLoadingException("This key loader does not support loading an RSA public key.");
+    }
+
+    default ECPublicKey loadPublicKey(String xHex, String yHex, String curveName) {
+        throw new KeyLoadingException("This key loader does not support loading an EC public key.");
     }
 
     /**

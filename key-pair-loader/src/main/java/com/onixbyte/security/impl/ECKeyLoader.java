@@ -20,14 +20,16 @@ package com.onixbyte.security.impl;
 import com.onixbyte.security.KeyLoader;
 import com.onixbyte.security.exception.KeyLoadingException;
 
+import java.math.BigInteger;
+import java.security.AlgorithmParameters;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.*;
 import java.util.Base64;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Key pair loader for loading key pairs for ECDSA-based algorithms.
@@ -58,6 +60,13 @@ public class ECKeyLoader implements KeyLoader {
     private final KeyFactory keyFactory;
 
     private final Base64.Decoder decoder;
+
+    /**
+     * Supported curves.
+     */
+    public static final Set<String> SUPPORTED_CURVES = new HashSet<>(Set.of(
+            "secp256r1", "secp384r1", "secp521r1", "secp224r1"
+    ));
 
     /**
      * Initialise a key loader for EC-based algorithms.
@@ -122,4 +131,38 @@ public class ECKeyLoader implements KeyLoader {
         }
     }
 
+    @Override
+    public ECPublicKey loadPublicKey(String xHex, String yHex, String curveName) {
+        if (!SUPPORTED_CURVES.contains(curveName)) {
+            throw new KeyLoadingException("Given curve is not supported yet.");
+        }
+
+        try {
+            // Convert hex string coordinates to BigInteger
+            var x = new BigInteger(xHex, 16);
+            var y = new BigInteger(yHex, 16);
+
+            // Create ECPoint with (x, y)
+            var ecPoint = new ECPoint(x, y);
+
+            // Get EC parameter spec for the named curve
+            var parameters = AlgorithmParameters.getInstance("EC");
+            parameters.init(new ECGenParameterSpec(curveName));
+            var ecParameterSpec = parameters.getParameterSpec(ECParameterSpec.class);
+
+            // Create ECPublicKeySpec with point and curve params
+            var pubSpec = new ECPublicKeySpec(ecPoint, ecParameterSpec);
+
+            // Generate public key using KeyFactory
+            var publicKey = keyFactory.generatePublic(pubSpec);
+
+            if (publicKey instanceof ECPublicKey ecPublicKey) {
+                return ecPublicKey;
+            } else {
+                throw new KeyLoadingException("Cannot load EC public key with given x, y and curve name.");
+            }
+        } catch (NoSuchAlgorithmException | InvalidParameterSpecException | InvalidKeySpecException e) {
+            throw new KeyLoadingException("Cannot load EC public key with given x, y and curve name.", e);
+        }
+    }
 }
