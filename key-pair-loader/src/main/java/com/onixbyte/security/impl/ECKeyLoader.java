@@ -53,7 +53,7 @@ import java.util.Base64;
  * @version 2.0.0
  * @since 2.0.0
  */
-public class EcKeyLoader implements KeyLoader {
+public class ECKeyLoader implements KeyLoader {
 
     private final KeyFactory keyFactory;
 
@@ -62,7 +62,7 @@ public class EcKeyLoader implements KeyLoader {
     /**
      * Initialise a key loader for EC-based algorithms.
      */
-    public EcKeyLoader() {
+    public ECKeyLoader() {
         try {
             this.keyFactory = KeyFactory.getInstance("EC");
             this.decoder = Base64.getDecoder();

@@ -44,7 +44,7 @@ import java.util.Base64;
  * @see KeyLoader
  * @see KeyLoadingException
  */
-public class RsaKeyLoader implements KeyLoader {
+public class RSAKeyLoader implements KeyLoader {
 
     private final Base64.Decoder decoder;
     private final KeyFactory keyFactory;
@@ -55,7 +55,7 @@ public class RsaKeyLoader implements KeyLoader {
      * This constructor initialises the Base64 decoder and the RSA {@link KeyFactory}. It may throw
      * a {@link KeyLoadingException} if the RSA algorithm is not available.
      */
-    public RsaKeyLoader() {
+    public RSAKeyLoader() {
         try {
             this.decoder = Base64.getDecoder();
             this.keyFactory = KeyFactory.getInstance("RSA");
