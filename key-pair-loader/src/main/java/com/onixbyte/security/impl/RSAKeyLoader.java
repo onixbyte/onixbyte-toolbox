@@ -20,13 +20,12 @@ package com.onixbyte.security.impl;
 import com.onixbyte.security.KeyLoader;
 import com.onixbyte.security.exception.KeyLoadingException;
 
+import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.*;
 import java.util.Base64;
 
 /**
@@ -44,9 +43,12 @@ import java.util.Base64;
  * @see KeyLoader
  * @see KeyLoadingException
  */
-public class RsaKeyLoader implements KeyLoader {
+public class RSAKeyLoader implements KeyLoader {
 
     private final Base64.Decoder decoder;
+
+    private final Base64.Decoder urlDecoder;
+
     private final KeyFactory keyFactory;
 
     /**
@@ -55,9 +57,10 @@ public class RsaKeyLoader implements KeyLoader {
      * This constructor initialises the Base64 decoder and the RSA {@link KeyFactory}. It may throw
      * a {@link KeyLoadingException} if the RSA algorithm is not available.
      */
-    public RsaKeyLoader() {
+    public RSAKeyLoader() {
         try {
             this.decoder = Base64.getDecoder();
+            this.urlDecoder = Base64.getUrlDecoder();
             this.keyFactory = KeyFactory.getInstance("RSA");
         } catch (NoSuchAlgorithmException e) {
             throw new KeyLoadingException(e);
@@ -131,6 +134,33 @@ public class RsaKeyLoader implements KeyLoader {
             }
         } catch (InvalidKeySpecException e) {
             throw new KeyLoadingException("Key spec is invalid.", e);
+        }
+    }
+
+    /**
+     * Get the public key with given modulus and public exponent.
+     *
+     * @param modulus  the modulus
+     * @param exponent the public exponent
+     * @return generated public key object from the provided key specification
+     * @see KeyFactory#getInstance(String)
+     * @see KeyFactory#generatePublic(KeySpec)
+     */
+    @Override
+    public RSAPublicKey loadPublicKey(String modulus, String exponent) {
+        try {
+            var _modulus = new BigInteger(1, urlDecoder.decode(modulus));
+            var _exponent = new BigInteger(1, urlDecoder.decode(exponent));
+
+            var keySpec = new RSAPublicKeySpec(_modulus, _exponent);
+            var kf = KeyFactory.getInstance("RSA");
+            if (kf.generatePublic(keySpec) instanceof RSAPublicKey rsaPublicKey) {
+                return rsaPublicKey;
+            } else {
+                throw new KeyLoadingException("Cannot generate RSA public key with given modulus and exponent.");
+            }
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new KeyLoadingException("Cannot generate RSA public key with given modulus and exponent.", e);
         }
     }
 }
