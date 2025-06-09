@@ -56,13 +56,18 @@ public interface KeyLoader {
     PublicKey loadPublicKey(String pemKeyText);
 
     /**
-     * Get the public key with given modulus and public exponent.
+     * Loads an RSA public key using the provided modulus and exponent.
+     * <p>
+     * This default implementation throws a {@link KeyLoadingException} to signify that this key loader does not support
+     * loading an RSA public key. Implementing classes are expected to override this method to supply their own
+     * loading logic.
      *
-     * @param modulus  the modulus
-     * @param exponent the public exponent
-     * @return generated public key object from the provided key specification
-     * @see KeyFactory#getInstance(String)
-     * @see KeyFactory#generatePublic(KeySpec)
+     * @param modulus  the modulus value of the RSA public key, usually represented in hexadecimal or Base64
+     *                 string format
+     * @param exponent the public exponent value of the RSA public key, usually represented in hexadecimal or Base64
+     *                 string format
+     * @return the loaded {@link RSAPublicKey} instance
+     * @throws KeyLoadingException if loading is not supported or fails
      */
     default RSAPublicKey loadPublicKey(String modulus, String exponent) {
         throw new KeyLoadingException("This key loader does not support loading an RSA public key.");
