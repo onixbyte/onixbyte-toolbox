@@ -68,6 +68,19 @@ public interface KeyLoader {
         throw new KeyLoadingException("This key loader does not support loading an RSA public key.");
     }
 
+    /**
+     * Loads an EC public key using the provided x and y coordinates together with the curve name.
+     * <p>
+     * This default implementation throws a {@link KeyLoadingException} to signify that this key loader does not support
+     * loading an EC public key. Implementing classes are expected to override this method to supply their own
+     * loading logic.
+     *
+     * @param xHex      the hexadecimal string representing the x coordinate of the EC point
+     * @param yHex      the hexadecimal string representing the y coordinate of the EC point
+     * @param curveName the name of the elliptic curve
+     * @return the loaded {@link ECPublicKey} instance
+     * @throws KeyLoadingException if loading is not supported or fails
+     */
     default ECPublicKey loadPublicKey(String xHex, String yHex, String curveName) {
         throw new KeyLoadingException("This key loader does not support loading an EC public key.");
     }

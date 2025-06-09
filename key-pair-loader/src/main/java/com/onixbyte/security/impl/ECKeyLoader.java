@@ -131,6 +131,23 @@ public class ECKeyLoader implements KeyLoader {
         }
     }
 
+    /**
+     * Loads an EC public key from the given hexadecimal x and y coordinates alongside the curve name.
+     * <p>
+     * This method converts the hexadecimal string representations of the EC point coordinates into {@link BigInteger}
+     * instances, then constructs an {@link ECPoint} and retrieves the corresponding {@link ECParameterSpec} for the
+     * named curve. Subsequently, it utilises the {@link KeyFactory} to generate an {@link ECPublicKey}.
+     * <p>
+     * Only curves listed in {@link #SUPPORTED_CURVES} are supported. Should the specified curve name be unsupported,
+     * or if key construction fails due to invalid parameters or unsupported algorithms, a {@link KeyLoadingException}
+     * will be thrown.
+     *
+     * @param xHex      the hexadecimal string representing the x-coordinate of the EC point
+     * @param yHex      the hexadecimal string representing the y-coordinate of the EC point
+     * @param curveName the name of the elliptic curve
+     * @return the {@link ECPublicKey} generated from the specified coordinates and curve
+     * @throws KeyLoadingException if the curve is unsupported or key generation fails
+     */
     @Override
     public ECPublicKey loadPublicKey(String xHex, String yHex, String curveName) {
         if (!SUPPORTED_CURVES.contains(curveName)) {
