@@ -25,10 +25,7 @@ import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.RSAPublicKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.*;
 import java.util.Base64;
 
 /**
@@ -140,6 +137,15 @@ public class RSAKeyLoader implements KeyLoader {
         }
     }
 
+    /**
+     * Get the public key with given modulus and public exponent.
+     *
+     * @param modulus  the modulus
+     * @param exponent the public exponent
+     * @return generated public key object from the provided key specification
+     * @see KeyFactory#getInstance(String)
+     * @see KeyFactory#generatePublic(KeySpec)
+     */
     @Override
     public RSAPublicKey loadPublicKey(String modulus, String exponent) {
         try {
