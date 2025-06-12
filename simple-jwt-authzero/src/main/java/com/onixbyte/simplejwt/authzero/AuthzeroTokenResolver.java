@@ -19,8 +19,7 @@ package com.onixbyte.simplejwt.authzero;
 
 import com.onixbyte.devkit.utils.Base64Util;
 import com.onixbyte.guid.GuidCreator;
-import com.onixbyte.security.KeyLoader;
-import com.onixbyte.security.impl.EcKeyLoader;
+import com.onixbyte.security.impl.ECKeyLoader;
 import com.onixbyte.simplejwt.TokenPayload;
 import com.onixbyte.simplejwt.TokenResolver;
 import com.onixbyte.simplejwt.annotations.ExcludeFromPayload;
@@ -43,7 +42,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
-import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
 import java.time.Duration;
@@ -179,7 +177,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
          * @return the builder instance
          */
         public Builder keyPair(String publicKey, String privateKey) {
-            var keyLoader = new EcKeyLoader();
+            var keyLoader = new ECKeyLoader();
             this.publicKey = keyLoader.loadPublicKey(publicKey);
             this.privateKey = keyLoader.loadPrivateKey(privateKey);
             return this;

@@ -17,8 +17,14 @@
 
 package com.onixbyte.security;
 
+import com.onixbyte.security.exception.KeyLoadingException;
+
+import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.interfaces.ECPublicKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.KeySpec;
 
 /**
  * The {@code KeyLoader} class provides utility methods for loading keys pairs from PEM-formatted
@@ -48,6 +54,41 @@ public interface KeyLoader {
      * @return loaded private key
      */
     PublicKey loadPublicKey(String pemKeyText);
+
+    /**
+     * Loads an RSA public key using the provided modulus and exponent.
+     * <p>
+     * This default implementation throws a {@link KeyLoadingException} to signify that this key loader does not support
+     * loading an RSA public key. Implementing classes are expected to override this method to supply their own
+     * loading logic.
+     *
+     * @param modulus  the modulus value of the RSA public key, usually represented in hexadecimal or Base64
+     *                 string format
+     * @param exponent the public exponent value of the RSA public key, usually represented in hexadecimal or Base64
+     *                 string format
+     * @return the loaded {@link RSAPublicKey} instance
+     * @throws KeyLoadingException if loading is not supported or fails
+     */
+    default RSAPublicKey loadPublicKey(String modulus, String exponent) {
+        throw new KeyLoadingException("This key loader does not support loading an RSA public key.");
+    }
+
+    /**
+     * Loads an EC public key using the provided x and y coordinates together with the curve name.
+     * <p>
+     * This default implementation throws a {@link KeyLoadingException} to signify that this key loader does not support
+     * loading an EC public key. Implementing classes are expected to override this method to supply their own
+     * loading logic.
+     *
+     * @param xHex      the hexadecimal string representing the x coordinate of the EC point
+     * @param yHex      the hexadecimal string representing the y coordinate of the EC point
+     * @param curveName the name of the elliptic curve
+     * @return the loaded {@link ECPublicKey} instance
+     * @throws KeyLoadingException if loading is not supported or fails
+     */
+    default ECPublicKey loadPublicKey(String xHex, String yHex, String curveName) {
+        throw new KeyLoadingException("This key loader does not support loading an EC public key.");
+    }
 
     /**
      * Retrieves the raw content of a PEM formatted key by removing unnecessary headers, footers,

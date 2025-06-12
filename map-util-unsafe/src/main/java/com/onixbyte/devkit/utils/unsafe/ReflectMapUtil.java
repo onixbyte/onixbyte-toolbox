@@ -33,27 +33,27 @@ import java.util.Map;
  * as maps for serialization, deserialization, or other purposes, and where the structure of the
  * objects is not known at compile time.
  * </p>
- * 
+ *
  * <p><b>Example usage:</b></p>
  * <pre>
  * {@code
  * public class User {
  *     private String name;
  *     private int age;
- *     
+ *
  *     // getters and setters
  * }
- * 
+ *
  * public class Example {
  *     public static void main(String[] args) throws IllegalAccessException {
  *         User user = new User();
  *         user.setName("John");
  *         user.setAge(30);
- *         
+ *
  *         // Convert object to map
  *         Map<String, Object> userMap = ReflectMapUtil.objectToMap(user);
  *         System.out.println(userMap); // Output: {name=John, age=30}
- *         
+ *
  *         // Convert map to object
  *         User newUser = ReflectMapUtil.mapToObject(userMap, User.class);
  *         System.out.println(newUser.getName()); // Output: John
@@ -66,7 +66,10 @@ import java.util.Map;
  * @author zihluwang
  * @version 1.4.2
  * @since 1.4.2
+ * @deprecated This utility class is no longer maintained and will be removed in a future release. If you still need to
+ * use {@link ReflectMapUtil}, please stick to the last available version (2.2.0).
  */
+@Deprecated(forRemoval = true, since = "2.2.0")
 public final class ReflectMapUtil {
 
     private final static Logger log = LoggerFactory.getLogger(ReflectMapUtil.class);
