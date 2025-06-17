@@ -57,5 +57,5 @@ test reports are prioritised for review and merging.
 
 ## License
 
-By contributing to the Java Dev Kit, you agree that your contributions will be licensed under the
+By contributing to the OnixByte Toolbox, you agree that your contributions will be licensed under the
 MIT license. If you do not agree to this, please refrain from contributing.
