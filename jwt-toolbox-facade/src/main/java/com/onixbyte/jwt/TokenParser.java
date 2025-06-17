@@ -20,45 +20,7 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.jwt.autoconfiguration;
+package com.onixbyte.jwt;
 
-import com.onixbyte.identitygenerator.IdentityGenerator;
-import com.onixbyte.jwt.autoconfiguration.conditions.GuidCreatorCondition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-
-import java.util.UUID;
-
-/**
- * Autoconfiguration for injecting a {@link IdentityGenerator} for generating jwt id.
- *
- * @author Zihlu Wang
- * @version 1.1.0
- * @since 1.0.0
- */
-@AutoConfiguration
-public class GuidAutoConfiguration {
-
-    private final static Logger log = LoggerFactory.getLogger(GuidAutoConfiguration.class);
-
-    /**
-     * Default constructor.
-     */
-    public GuidAutoConfiguration() {
-    }
-
-    /**
-     * Create a default {@code jtiCreator} with UUID.
-     *
-     * @return UUID creator
-     */
-    @Bean(name = "jtiCreator")
-    @Conditional(GuidCreatorCondition.class)
-    public IdentityGenerator<?> jtiCreator() {
-        return UUID::randomUUID;
-    }
-
+public interface TokenParser {
 }

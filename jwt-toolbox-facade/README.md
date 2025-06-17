@@ -1,12 +1,11 @@
-# Module `simple-jwt-facade`
+# JWT Toolbox :: Facade
 
 ## Introduction
 
-The `simple-jwt-facade` module is a lightweight and easy-to-use façade for working with JSON Web Tokens (JWT) in Java applications. It provides a simplified interface and utilities to handle the creation, validation, renewal, and processing of JWTs without the need for complex configurations or third-party dependencies.
-
-## Prerequisites
-
-This whole `JDevKit` is developed by **JDK 17**, which means you have to use JDK 17 for better experience.
+The JWT Toolbox Facade module is a lightweight and easy-to-use façade for working with JSON Web
+Tokens (JWT) in Java applications. It provides a simplified interface and utilities to handle the
+creation, validation, renewal, and processing of JWTs without the need for complex configurations or
+third-party dependencies.
 
 ## Installation
 
@@ -16,27 +15,36 @@ It is quite simple to install this module by `Maven`. The only thing you need to
 
 ```xml
 <dependency>
-	<groupId>cn.org.codecrafters</groupId>
-    <artifactId>simple-jwt-facade</artifactId>
-    <version>${simple-jwt-facade.version}</version>
+	<groupId>com.onixbyte</groupId>
+    <artifactId>jwt-toolkit-facade</artifactId>
+    <version>${jwt-toolkit-facade.version}</version>
 </dependency>
 ```
 
-And run `mvn dependency:get` in your project root folder(i.e., if your `pom.xml` is located at `/path/to/your/project/pom.xml`, then your current work folder should be `/path/to/your/project`), then `Maven` will automatically download the `jar` archive from `Maven Central Repository`. This could be **MUCH EASIER** if you are using IDE(i.e., IntelliJ IDEA), the only thing you need to do is click the refresh button of `Maven`.
+And run `mvn dependency:get` in your project root folder(i.e., if your `pom.xml` is located at 
+`/path/to/your/project/pom.xml`, then your current work folder should be `/path/to/your/project`),
+then `Maven` will automatically download the `jar` archive from `Maven Central Repository`. 
 
-If you are restricted using the Internet, and have to make `Maven` offline, you could follow the following steps.
+This could be **MUCH EASIER** if you are using IDE(i.e., IntelliJ IDEA), the only thing you need to
+do is click the refresh button of `Maven`.
 
-1. Download the `jar` file from any place you can get and transfer the `jar` files to your work computer.
-2. Move the `jar` files to your local `Maven` Repository as the path of `/path/to/maven_local_repo/cn/org/codecrafters/simple-jwt-facade/`.
+If you are restricted using the Internet, and have to make `Maven` offline, you could follow the
+following steps.
+
+1. Download the `jar` file from any place you can get and transfer the `jar` files to your
+   work computer.
+2. Move the `jar` files to your local `Maven` Repository as the path of
+   `/path/to/maven_local_repo/com/onixbyte/jwt-toolbox-facade/`.
 
 ### If you are using `Gradle`
 
 Add this module to your project with `Gradle` is much easier than doing so with `Maven`.
 
-Find `build.gradle` in the needed project, and add the following code to the `dependencies` closure in the build script:
+Find `build.gradle` in the needed project, and add the following code to the `dependencies` closure
+in the build script:
 
 ```groovy
-implementation 'cn.org.codecrafters:simple-jwt-facade:${simple-jwt-facade.version}'
+implementation 'com.onixbyte:jwt-toolbox-facade:${jwt-toolbox-facade.version}'
 ```
 
 ### If you are not using `Maven` or `Gradle`
@@ -67,7 +75,7 @@ After doing all these, an implemented `TokenResolver` is ready to process JWTs.
 You will need an instance of the implementation to process JWTs.
 
 ```java
-var tokenResolver = new ImplementedTokenResolver(/* arguments you declared */)
+var tokenResolver = new ImplementedTokenResolver(/* arguments you declared */);
 ```
 
 ## Create a JSON Web Token with `TokenResolver`

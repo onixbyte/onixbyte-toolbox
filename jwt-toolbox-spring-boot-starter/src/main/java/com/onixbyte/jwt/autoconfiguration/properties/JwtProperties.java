@@ -1,39 +1,43 @@
 /*
- * Copyright (C) 2024-2025 OnixByte.
+ * Copyright (c) 2024-2025 OnixByte
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 package com.onixbyte.jwt.autoconfiguration.properties;
 
 import com.onixbyte.jwt.SecretCreator;
-import com.onixbyte.jwt.autoconfiguration.AuthzeroTokenResolverAutoConfiguration;
 import com.onixbyte.jwt.constants.TokenAlgorithm;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * {@code SimpleJwtProperties} is a configuration properties class used to store the properties
+ * {@code JwtProperties} is a configuration properties class used to store the properties
  * related to Simple JWT library configurations. These properties can be configured in the
  * application's properties file (e.g., application.properties) with the prefix
  * "onixbyte.simple-jwt".
  * <p>
- * {@code SimpleJwtProperties} provides configuration options for the JWT algorithm, issuer,
- * and secret. The properties are used by the {@link AuthzeroTokenResolverAutoConfiguration} to
+ * {@code JwtProperties} provides configuration options for the JWT algorithm, issuer,
+ * and secret. The properties are used by the {@code Auth0AutoConfiguration} to
  * set up the necessary configurations for JWT generation and validation.
  * <p>
  * Developers can customise the JWT algorithm, issuer, and secret by setting the corresponding
- * properties in the application's properties file. The {@code SimpleJwtAutoConfiguration} class
+ * properties in the application's properties file. The {@code Auth0AutoConfiguration} class
  * reads these properties and uses them to create the TokenResolver bean with the
  * desired configuration.
  *
@@ -41,13 +45,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.1.0
  * @since 1.0.0
  */
-@ConfigurationProperties(prefix = "onixbyte.simple-jwt")
-public class SimpleJwtProperties {
+// @ConfigurationProperties(prefix = "onixbyte.jwt")
+public class JwtProperties {
 
     /**
      * Default constructor.
      */
-    public SimpleJwtProperties() {
+    public JwtProperties() {
     }
 
     /**

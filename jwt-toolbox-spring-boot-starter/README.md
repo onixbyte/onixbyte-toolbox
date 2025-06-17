@@ -1,8 +1,15 @@
-# Module `simple-jwt-spring-boot-starter`
+# JWT Toolbox :: Spring Boot Starter
 
 ## Introduction
 
-Module `simple-jwt-spring-boot-starter` is a lightweight and easy-to-use Spring Boot starter module that provides seamless integration with JSON Web Token (JWT) authentication in Spring Boot applications. With this starter, developers can easily configure and enable JWT-based authentication for their APIs and web applications without the need for complex manual setup. It simplifies the process of generating and validating JWTs, making it effortless to secure endpoints and implement token-based authentication in Spring Boot projects. The module is designed to be flexible, allowing developers to customize various aspects of JWT authentication to suit their specific requirements. Overall, `simple-jwt-spring-boot-starter` is a convenient solution for adding secure and efficient JWT authentication to Spring Boot applications.
+Module **JWT Toolbox :: Spring Boot Starter** is a lightweight and easy-to-use Spring Boot starter
+module that provides seamless integration with JSON Web Token (JWT) authentication in Spring Boot
+applications. With this starter, developers can easily configure and enable JWT-based authentication
+for their APIs and web applications without the need for complex manual setup. It simplifies the
+process of generating and validating JWTs, making it effortless to secure endpoints and implement
+token-based authentication in Spring Boot projects. The module is designed to be flexible, allowing
+developers to customize various aspects of JWT authentication to suit their specific requirements.
+Overall, `jwt-toolbox-spring-boot-starter` is a convenient solution for adding secure and efficient JWT authentication to Spring Boot applications.
 
 ## Prerequisites
 

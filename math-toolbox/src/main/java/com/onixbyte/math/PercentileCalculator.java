@@ -1,25 +1,28 @@
 /*
- * Copyright (C) 2024-2025 OnixByte.
+ * Copyright (c) 2024-2025 OnixByte
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 package com.onixbyte.math;
 
 import com.onixbyte.math.model.QuartileBounds;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -29,29 +32,29 @@ import java.util.List;
  * <p>
  * This class contains static methods to:
  * <ul>
- *   <li>Calculate a specified percentile from a list of double values using linear interpolation.</li>
- *   <li>Calculate interquartile bounds (Q1, Q3) and the corresponding lower and upper bounds,
- *       which can be used to identify outliers in the dataset.</li>
+ *   <li>
+ *     Calculate a specified percentile from a list of double values using linear interpolation.
+ *   </li>
+ *   <li>
+ *     Calculate interquartile bounds (Q1, Q3) and the corresponding lower and upper bounds,
+ *     which can be used to identify outliers in the dataset.
+ *   </li>
  * </ul>
  * <p>
  * This class is final, meaning it cannot be subclassed, and it only contains static methods,
  * so instances of the class cannot be created.
  * <h2>Example usage:</h2>
- * <pre>
- * {@code
+ * <pre>{@code
  * List<Double> data = Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0);
  * Double percentileValue = PercentileCalculator.calculatePercentile(data, 50.0);  // Calculates median
  * QuartileBounds bounds = PercentileCalculator.calculatePercentileBounds(data);   // Calculates IQR bounds
- * }
- * </pre>
+ * }</pre>
  *
  * @author zihluwang
- * @version 1.6.5
+ * @version 3.0.0
  * @since 1.6.5
  */
 public final class PercentileCalculator {
-
-    private final static Logger log = LoggerFactory.getLogger(PercentileCalculator.class);
 
     /**
      * Private constructor to prevent instantiation of this utility class.
@@ -100,18 +103,18 @@ public final class PercentileCalculator {
      */
     public static QuartileBounds calculatePercentileBounds(List<Double> data) {
         var sorted = data.stream().sorted().toList();
-        var Q1 = calculatePercentile(sorted, 25.);
-        var Q3 = calculatePercentile(sorted, 75.);
+        var q1 = calculatePercentile(sorted, 25.);
+        var q3 = calculatePercentile(sorted, 75.);
 
-        var IQR = Q3 - Q1;
+        var iqr = q3 - q1;
 
-        var lowerBound = Q1 - 1.5 * IQR;
-        var upperBound = Q3 + 1.5 * IQR;
+        var lowerBound = q1 - 1.5 * iqr;
+        var upperBound = q3 + 1.5 * iqr;
 
         return QuartileBounds.builder()
-                .upperBound(upperBound)
-                .lowerBound(lowerBound)
-                .build();
+            .upperBound(upperBound)
+            .lowerBound(lowerBound)
+            .build();
     }
 
 }
