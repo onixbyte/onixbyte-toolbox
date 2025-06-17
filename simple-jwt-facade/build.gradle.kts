@@ -55,7 +55,6 @@ dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
 
-    api(project(":devkit-core"))
     api(project(":devkit-utils"))
     api(project(":guid"))
 

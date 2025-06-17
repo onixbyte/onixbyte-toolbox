@@ -19,7 +19,6 @@ rootProject.name = "JDevKit"
 
 include(
     "devkit-bom",
-    "devkit-core",
     "devkit-utils",
     "guid",
     "key-pair-loader",
