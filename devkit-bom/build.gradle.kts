@@ -55,8 +55,8 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "DevKit BOM"
-                description = "Using BOM could use unified OnixByte JDevKit."
+                name = "OnixByte DevKit BOM"
+                description = "OnixByte DevKit BOM is designed to manage dependency versions centrally."
                 url = projectUrl
 
                 licenses {
@@ -67,8 +67,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
+                    connection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
+                    developerConnection = "scm:git:git://github.com:OnixByte/java-dev-kit.git"
                     url = projectGithubUrl
                 }
 
@@ -88,8 +88,6 @@ publishing {
                     }
                 }
             }
-
-            print(components)
 
             from(components["javaPlatform"])
 
