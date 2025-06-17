@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024-2025 OnixByte.
+ * Copyright (C) 2023 CodeCraftersCN.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,19 @@
  * limitations under the License.
  */
 
-rootProject.name = "onixbyte-toolbox"
+package com.onixbyte.simplejwt.authzero.test;
 
-include(
-    "version-catalogue",
-    "common-toolbox",
-    "identity-generator",
-    "crypto-toolbox",
-    "math-toolbox",
-    "jwt-toolbox-facade",
-    "jwt-toolbox-auth0",
-    "jwt-toolbox-spring-boot-starter",
-)
+import com.onixbyte.simplejwt.authzero.AuthzeroTokenResolver;
+import com.onixbyte.simplejwt.constants.TokenAlgorithm;
+import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
+
+/**
+ * TestAuthzeroTokenResolver
+ *
+ * @author Zihlu Wang
+ */
+public class TestAuthzeroTokenResolver {
+
+}
