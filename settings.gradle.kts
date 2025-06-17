@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-rootProject.name = "JDevKit"
+rootProject.name = "onixbyte-toolbox"
 
 include(
     "devkit-bom",
