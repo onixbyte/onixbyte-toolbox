@@ -87,8 +87,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
-                    developerConnection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
+                    connection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
                     url = projectGithubUrl
                 }
 
