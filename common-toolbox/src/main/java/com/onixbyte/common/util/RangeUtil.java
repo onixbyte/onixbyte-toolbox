@@ -1,18 +1,23 @@
 /*
- * Copyright (C) 2024-2025 OnixByte.
+ * Copyright (c) 2024-2025 OnixByte
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 
 package com.onixbyte.common.util;
@@ -27,6 +32,7 @@ import java.util.stream.IntStream;
  * leverage the {@link IntStream} to provide efficient and versatile integer sequences.
  *
  * @author zihluwang
+ * @version 3.0.0
  * @see IntStream
  */
 public final class RangeUtil {
@@ -64,7 +70,7 @@ public final class RangeUtil {
     public static IntStream range(int end) {
         if (end <= 0) {
             throw new IllegalArgumentException("Parameter [end] should not be less than or equal to 0, provided: " +
-                    end);
+                end);
         }
         return IntStream.range(0, end);
     }
@@ -77,8 +83,9 @@ public final class RangeUtil {
      * further processing.
      * <p>
      * If {@code start} is less than {@code end}, an ascending range (exclusive of {@code end})
-     * is generated. If {@code start} is greater than {@code end}, a descending range (exclusive of {@code end})
-     * is generated. If {@code start} equals {@code end}, an empty stream is returned.
+     * is generated. If {@code start} is greater than {@code end}, a descending range (exclusive
+     * of {@code end}) is generated. If {@code start} equals {@code end}, an empty stream
+     * is returned.
      * <p>
      * <b>Example Usage:</b>
      * <pre>{@code
@@ -103,7 +110,8 @@ public final class RangeUtil {
      *
      * @param start the starting value of the range (inclusive)
      * @param end   upper-bound of the range (exclusive)
-     * @return an {@code IntStream} of integers in ascending or descending order, exclusive of {@code end}
+     * @return an {@code IntStream} of integers in ascending or descending order, exclusive
+     * of {@code end}
      * @see IntStream
      */
     public static IntStream range(int start, int end) {
@@ -150,8 +158,8 @@ public final class RangeUtil {
     }
 
     /**
-     * Generates a stream of integers starting from the specified {@code start} value, incremented by
-     * the specified {@code step}, up to the specified {@code end} value.
+     * Generates a stream of integers starting from the specified {@code start} value, incremented
+     * by the specified {@code step}, up to the specified {@code end} value.
      * <p>
      * It creates a sequential, ordered {@code IntStream} that can be used for iteration or
      * further processing.
@@ -180,9 +188,10 @@ public final class RangeUtil {
      * @param start the starting value of the range (inclusive)
      * @param end   upper-bound of the range (exclusive)
      * @param step  the increment or decrement between each value (non-zero)
-     * @return an {@code IntStream} of integers from {@code start} to {@code end} exclusive stepping by {@code step}
-     * @throws IllegalArgumentException if {@code step} is zero or if {@code start} and {@code end} are inconsistent
-     *                                  with the direction imposed by {@code step}
+     * @return an {@code IntStream} of integers from {@code start} to {@code end} exclusive stepping
+     * by {@code step}
+     * @throws IllegalArgumentException if {@code step} is zero or if {@code start} and {@code end}
+     *                                  are inconsistent with the direction imposed by {@code step}
      * @see IntStream
      */
     public static IntStream range(int start, int end, int step) {
