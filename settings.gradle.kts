@@ -28,5 +28,4 @@ include(
     "simple-jwt-facade",
     "simple-jwt-authzero",
     "simple-jwt-spring-boot-starter",
-    "simple-serial-spring-boot-starter"
 )
