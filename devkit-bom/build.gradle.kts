@@ -55,7 +55,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "OnixByte DevKit BOM"
+                name = "OnixByte Version Catalogue"
                 description = "OnixByte DevKit BOM is designed to manage dependency versions centrally."
                 url = projectUrl
 

@@ -74,7 +74,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Facade"
+                name = "OnixByte JWT Toolbox :: Facade"
                 description = "Declaration of simple JWT module."
                 url = projectUrl
 

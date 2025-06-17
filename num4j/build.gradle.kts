@@ -70,7 +70,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Num4j"
+                name = "OnixByte Math Toolbox"
                 description =
                     "This module is an easy-to-use util for mathematical calculations in Java."
                 url = projectUrl

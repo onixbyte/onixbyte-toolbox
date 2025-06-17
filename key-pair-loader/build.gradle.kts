@@ -74,7 +74,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Key Pair Loader"
+                name = "OnixByte Crypto Toolbox"
                 description =
                     "This module can easily load key pairs from a PEM content."
                 url = projectUrl
@@ -87,8 +87,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
                     url = projectGithubUrl
                 }
 

@@ -70,7 +70,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "DevKit - GUID"
+                name = "OnixByte Identity Generator"
                 description = "The module for generating GUIDs of JDevKit."
                 url = projectUrl
 
@@ -82,8 +82,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
                     url = projectGithubUrl
                 }
 

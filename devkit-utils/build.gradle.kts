@@ -70,7 +70,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "OnixByte DevKit Utils"
+                name = "OnixByte Common Toolbox"
                 description = "The utils module of JDevKit."
                 url = projectUrl
 
