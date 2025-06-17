@@ -19,12 +19,10 @@ package com.onixbyte.security;
 
 import com.onixbyte.security.exception.KeyLoadingException;
 
-import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.interfaces.ECPublicKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.KeySpec;
 
 /**
  * The {@code KeyLoader} class provides utility methods for loading keys pairs from PEM-formatted

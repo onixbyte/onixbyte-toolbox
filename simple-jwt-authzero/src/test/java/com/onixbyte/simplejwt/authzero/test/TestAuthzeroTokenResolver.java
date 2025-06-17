@@ -17,12 +17,6 @@
 
 package com.onixbyte.simplejwt.authzero.test;
 
-import com.onixbyte.simplejwt.authzero.AuthzeroTokenResolver;
-import com.onixbyte.simplejwt.constants.TokenAlgorithm;
-import org.junit.jupiter.api.Test;
-
-import java.time.Duration;
-
 /**
  * TestAuthzeroTokenResolver
  *
