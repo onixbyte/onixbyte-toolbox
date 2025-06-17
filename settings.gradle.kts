@@ -24,7 +24,6 @@ include(
     "guid",
     "key-pair-loader",
     "num4j",
-    "simple-jwt",
     "simple-jwt-facade",
     "simple-jwt-authzero",
     "simple-jwt-spring-boot-starter",
