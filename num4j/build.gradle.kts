@@ -54,7 +54,6 @@ tasks.withType<Jar> {
 dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
-    api(project(":devkit-core"))
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
 }
@@ -71,7 +70,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Num4j"
+                name = "OnixByte Math Toolbox"
                 description =
                     "This module is an easy-to-use util for mathematical calculations in Java."
                 url = projectUrl
@@ -84,8 +83,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
                     url = projectGithubUrl
                 }
 

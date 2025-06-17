@@ -15,19 +15,15 @@
  * limitations under the License.
  */
 
-rootProject.name = "JDevKit"
+rootProject.name = "onixbyte-toolbox"
 
 include(
     "devkit-bom",
-    "devkit-core",
     "devkit-utils",
     "guid",
     "key-pair-loader",
-    "map-util-unsafe",
     "num4j",
-    "simple-jwt",
     "simple-jwt-facade",
     "simple-jwt-authzero",
     "simple-jwt-spring-boot-starter",
-    "simple-serial-spring-boot-starter"
 )

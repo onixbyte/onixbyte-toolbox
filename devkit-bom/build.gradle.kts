@@ -37,17 +37,13 @@ repositories {
 
 dependencies {
     constraints {
-        api("com.onixbyte:devkit-core:$artefactVersion")
         api("com.onixbyte:devkit-utils:$artefactVersion")
         api("com.onixbyte:guid:$artefactVersion")
         api("com.onixbyte:key-pair-loader:$artefactVersion")
-        api("com.onixbyte:map-util-unsafe:$artefactVersion")
         api("com.onixbyte:num4j:$artefactVersion")
         api("com.onixbyte:simple-jwt-facade:$artefactVersion")
         api("com.onixbyte:simple-jwt-authzero:$artefactVersion")
         api("com.onixbyte:simple-jwt-spring-boot-starter:$artefactVersion")
-        api("com.onixbyte:property-guard-spring-boot-starter:$artefactVersion")
-        api("com.onixbyte:simple-serial-spring-boot-starter:$artefactVersion")
     }
 }
 
@@ -59,8 +55,8 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "DevKit BOM"
-                description = "Using BOM could use unified OnixByte JDevKit."
+                name = "OnixByte Version Catalogue"
+                description = "OnixByte DevKit BOM is designed to manage dependency versions centrally."
                 url = projectUrl
 
                 licenses {
@@ -71,8 +67,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/devkit-bom.git"
+                    connection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
                     url = projectGithubUrl
                 }
 
@@ -92,8 +88,6 @@ publishing {
                     }
                 }
             }
-
-            print(components)
 
             from(components["javaPlatform"])
 

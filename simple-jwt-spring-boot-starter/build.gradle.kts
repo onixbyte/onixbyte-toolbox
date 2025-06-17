@@ -87,7 +87,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Spring Boot Starter"
+                name = "OnixByte JWT Toolbox :: Spring Boot Starter"
                 description = "Simple JWT all-in-one package for Spring Boot."
                 url = projectUrl
 
@@ -99,8 +99,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
                     url = projectGithubUrl
                 }
 

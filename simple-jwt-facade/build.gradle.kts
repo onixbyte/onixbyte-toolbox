@@ -55,7 +55,6 @@ dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
 
-    api(project(":devkit-core"))
     api(project(":devkit-utils"))
     api(project(":guid"))
 
@@ -75,7 +74,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Facade"
+                name = "OnixByte JWT Toolbox :: Facade"
                 description = "Declaration of simple JWT module."
                 url = projectUrl
 
@@ -87,8 +86,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
                     url = projectGithubUrl
                 }
 

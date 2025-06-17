@@ -78,7 +78,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Auth0"
+                name = "OnixByte JWT Toolbox :: Auth0 Implementation"
                 description = "Simple JWT implemented with com.auth0:java-jwt."
                 url = projectUrl
 
@@ -90,8 +90,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/onixbyte-toolbox.git"
                     url = projectGithubUrl
                 }
 
