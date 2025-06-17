@@ -15,15 +15,26 @@
  * limitations under the License.
  */
 
-rootProject.name = "onixbyte-toolbox"
+package com.onixbyte.crypto;
 
-include(
-    "version-catalogue",
-    "common-toolbox",
-    "identity-generator",
-    "crypto-toolbox",
-    "math-toolbox",
-    "jwt-toolbox-facade",
-    "jwt-toolbox-auth0",
-    "jwt-toolbox-spring-boot-starter",
-)
+import java.security.PrivateKey;
+
+/**
+ * The {@code PrivateKeyLoader} interface provides utility methods for loading keys pairs from
+ * PEM-formatted key text. This class supports loading both private and public keys.
+ *
+ * @author zihluwang
+ * @author siujamo
+ * @version 2.0.0
+ * @since 1.6.0
+ */
+public interface PrivateKeyLoader {
+
+    /**
+     * Load private key from pem-formatted key text.
+     *
+     * @param pemKeyText pem-formatted key text
+     * @return loaded private key
+     */
+    PrivateKey loadPrivateKey(String pemKeyText);
+}

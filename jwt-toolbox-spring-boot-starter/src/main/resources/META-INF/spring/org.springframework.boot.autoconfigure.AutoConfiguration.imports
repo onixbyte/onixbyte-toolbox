@@ -1,0 +1,2 @@
+com.onixbyte.jwt.autoconfiguration.GuidAutoConfiguration
+com.onixbyte.jwt.autoconfiguration.AuthzeroTokenResolverAutoConfiguration
