@@ -70,7 +70,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "DevKit - Utils"
+                name = "OnixByte DevKit Utils"
                 description = "The utils module of JDevKit."
                 url = projectUrl
 
@@ -82,8 +82,8 @@ publishing {
                 }
 
                 scm {
-                    connection = "scm:git:git://github.com:OnixByte/JDevKit.git"
-                    developerConnection = "scm:git:git://github.com:OnixByte/JDevKit.git"
+                    connection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
+                    developerConnection = "scm:git:git://github.com:onixbyte/java-dev-kit.git"
                     url = projectGithubUrl
                 }
 
