@@ -68,13 +68,13 @@ tasks.test {
 
 publishing {
     publications {
-        create<MavenPublication>("simpleJwtFacade") {
+        create<MavenPublication>("jwtToolboxFacade") {
             groupId = group.toString()
-            artifactId = "simple-jwt-facade"
+            artifactId = "jwt-toolbox-facade"
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Facade"
+                name = "OnixByte JWT Toolbox :: Facade"
                 description = "Declaration of simple JWT module."
                 url = projectUrl
 
@@ -111,7 +111,7 @@ publishing {
             from(components["java"])
 
             signing {
-                sign(publishing.publications["simpleJwtFacade"])
+                sign(publishing.publications["jwtToolboxFacade"])
             }
         }
 

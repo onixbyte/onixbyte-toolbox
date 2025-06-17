@@ -50,7 +50,7 @@ implementation 'cn.org.codecrafters:simple-jwt-authzero:${simple-jwt-authzero.ve
 
 ## Use the `AuthzeroTokenResolver`
 
-We have implemented `TokenResolver` to make sure you can add JWT to your Java application as soon as possible. All you need to do is to create an instance of `com.onixbyte.simplejwt.authzero.AuthzeroTokenResolver` and other operations to JWT could follow our instruction in [`simple-jwt-facade`](../simple-jwt-facade/README.md).
+We have implemented `TokenResolver` to make sure you can add JWT to your Java application as soon as possible. All you need to do is to create an instance of `com.onixbyte.jwt.auth0.AuthzeroTokenResolver` and other operations to JWT could follow our instruction in [`simple-jwt-facade`](../simple-jwt-facade/README.md).
 
 ## Contact
 

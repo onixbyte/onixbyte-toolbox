@@ -81,13 +81,13 @@ tasks.test {
 
 publishing {
     publications {
-        create<MavenPublication>("simpleJwtSpringBootStarter") {
+        create<MavenPublication>("jwtSpringBootStarter") {
             groupId = group.toString()
-            artifactId = "simple-jwt-spring-boot-starter"
+            artifactId = "jwt-spring-boot-starter"
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Spring Boot Starter"
+                name = "OnixByte JWT Toolbox :: Spring Boot Starter"
                 description = "Simple JWT all-in-one package for Spring Boot."
                 url = projectUrl
 
@@ -124,7 +124,7 @@ publishing {
             from(components["java"])
 
             signing {
-                sign(publishing.publications["simpleJwtSpringBootStarter"])
+                sign(publishing.publications["jwtSpringBootStarter"])
             }
         }
 

@@ -64,13 +64,13 @@ tasks.test {
 
 publishing {
     publications {
-        create<MavenPublication>("num4j") {
+        create<MavenPublication>("mathToolbox") {
             groupId = group.toString()
-            artifactId = "num4j"
+            artifactId = "math-toolbox"
             version = artefactVersion
 
             pom {
-                name = "Num4j"
+                name = "OnixByte Math Toolbox"
                 description =
                     "This module is an easy-to-use util for mathematical calculations in Java."
                 url = projectUrl
@@ -108,7 +108,7 @@ publishing {
             from(components["java"])
 
             signing {
-                sign(publishing.publications["num4j"])
+                sign(publishing.publications["mathToolbox"])
             }
         }
 

@@ -49,9 +49,9 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("devkitBom") {
+        create<MavenPublication>("versionCatalogue") {
             groupId = group.toString()
-            artifactId = "devkit-bom"
+            artifactId = "version-catalogue"
             version = artefactVersion
 
             pom {
@@ -92,7 +92,7 @@ publishing {
             from(components["javaPlatform"])
 
             signing {
-                sign(publishing.publications["devkitBom"])
+                sign(publishing.publications["versionCatalogue"])
             }
         }
 

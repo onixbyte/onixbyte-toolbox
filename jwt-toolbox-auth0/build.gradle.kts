@@ -72,13 +72,13 @@ tasks.test {
 
 publishing {
     publications {
-        create<MavenPublication>("simpleJwtAuthzero") {
+        create<MavenPublication>("jwtToolboxAuth0") {
             groupId = group.toString()
-            artifactId = "simple-jwt-authzero"
+            artifactId = "jwt-toolbox-auth0"
             version = artefactVersion
 
             pom {
-                name = "Simple JWT :: Auth0"
+                name = "OnixByte JWT Toolbox :: Auth0"
                 description = "Simple JWT implemented with com.auth0:java-jwt."
                 url = projectUrl
 
@@ -115,7 +115,7 @@ publishing {
             from(components["java"])
 
             signing {
-                sign(publishing.publications["simpleJwtAuthzero"])
+                sign(publishing.publications["jwtToolboxAuth0"])
             }
         }
 

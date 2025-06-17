@@ -64,13 +64,13 @@ tasks.test {
 
 publishing {
     publications {
-        create<MavenPublication>("guid") {
+        create<MavenPublication>("identityGenerator") {
             groupId = group.toString()
-            artifactId = "guid"
+            artifactId = "identity-generator"
             version = artefactVersion
 
             pom {
-                name = "DevKit - GUID"
+                name = "OnixByte Identity Generator"
                 description = "The module for generating GUIDs of JDevKit."
                 url = projectUrl
 
@@ -107,7 +107,7 @@ publishing {
             from(components["java"])
 
             signing {
-                sign(publishing.publications["guid"])
+                sign(publishing.publications["identityGenerator"])
             }
         }
 
