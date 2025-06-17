@@ -87,7 +87,7 @@ publishing {
             version = artefactVersion
 
             pom {
-                name = "OnixByte JWT Toolkit :: Spring Boot Starter"
+                name = "OnixByte JWT Toolbox :: Spring Boot Starter"
                 description = "Simple JWT all-in-one package for Spring Boot."
                 url = projectUrl
 
