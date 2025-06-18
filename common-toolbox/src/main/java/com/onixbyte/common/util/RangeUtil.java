@@ -122,7 +122,7 @@ public final class RangeUtil {
             return IntStream.range(start, end);
         } else {
             // Descending range (exclusive of end)
-            return IntStream.iterate(start, n -> n > end, n -> n - 1);
+            return IntStream.iterate(start, (n) -> n > end, (n) -> n - 1);
         }
     }
 

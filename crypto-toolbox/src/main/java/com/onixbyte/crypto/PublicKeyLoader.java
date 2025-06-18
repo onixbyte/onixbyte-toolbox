@@ -29,16 +29,19 @@ import java.security.interfaces.ECPublicKey;
 import java.security.interfaces.RSAPublicKey;
 
 /**
+ * The {@code PublicKeyLoader} provides utility methods for loading public keys from PEM-formatted
+ * key text.
  *
+ * @author zihluwang
  * @author siujamo
  * @version 3.0.0
  */
 public interface PublicKeyLoader {
 
     /**
-     * Load public key from pem-formatted key text.
+     * Load public key from PEM-formatted key text.
      *
-     * @param pemKeyText pem-formatted key text
+     * @param pemKeyText PEM-formatted key text
      * @return loaded private key
      */
     PublicKey loadPublicKey(String pemKeyText);

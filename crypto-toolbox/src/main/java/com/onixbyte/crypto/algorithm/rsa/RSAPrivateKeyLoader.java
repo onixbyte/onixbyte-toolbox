@@ -35,18 +35,19 @@ import java.security.spec.*;
 import java.util.Base64;
 
 /**
- * A class responsible for loading RSA keys from PEM formatted text.
+ * A class responsible for loading private RSA keys from PEM formatted text.
  * <p>
- * This class implements the {@link PrivateKeyLoader} interface and provides methods to load both
- * private and public RSA keys. The keys are expected to be in the standard PEM format, which
- * includes Base64-encoded key content surrounded by header and footer lines. The class handles
- * the decoding of Base64 content and the generation of keys using the RSA key factory.
+ * This class implements the {@link PrivateKeyLoader} interface and provides methods to load private
+ * RSA keys. The keys are expected to be in the standard PEM format, which includes Base64-encoded
+ * key content surrounded by header and footer lines. The class handles the decoding of Base64
+ * content and the generation of keys using the RSA key factory.
  * <p>
  * Any exceptions encountered during the loading process are encapsulated in a
  * {@link KeyLoadingException}, allowing for flexible error handling.
  *
  * @author zihluwang
  * @author siujamo
+ * @version 3.0.0
  * @see PrivateKeyLoader
  * @see KeyLoadingException
  */

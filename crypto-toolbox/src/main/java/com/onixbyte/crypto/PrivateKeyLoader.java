@@ -25,8 +25,8 @@ package com.onixbyte.crypto;
 import java.security.PrivateKey;
 
 /**
- * The {@code PrivateKeyLoader} interface provides utility methods for loading keys pairs from
- * PEM-formatted key text. This class supports loading both private and public keys.
+ * The {@code PrivateKeyLoader} provides utility methods for loading private keys from
+ * PEM-formatted key text.
  *
  * @author zihluwang
  * @author siujamo

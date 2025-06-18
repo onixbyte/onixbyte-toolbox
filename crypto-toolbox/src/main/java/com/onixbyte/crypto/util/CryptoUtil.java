@@ -23,7 +23,11 @@
 package com.onixbyte.crypto.util;
 
 /**
+ * Utility class for cryptographic operations.
  *
+ * @author zihluwang
+ * @author siujamo
+ * @version 3.0.0
  */
 public final class CryptoUtil {
 
@@ -34,24 +38,22 @@ public final class CryptoUtil {
     }
 
     /**
-     * Retrieves the raw content of a PEM formatted key by removing unnecessary headers, footers,
-     * and new line characters.
+     * Extracts the raw content from a PEM-formatted key by removing any headers, footers,
+     * and newline characters.
      *
      * <p>
-     * This method processes the provided PEM key text to return a cleaned string that contains
-     * only the key content. The method strips away the
-     * {@code "-----BEGIN (EC )?(PRIVATE|PUBLIC) KEY-----"} and
-     * {@code "-----END (EC )?(PRIVATE|PUBLIC) KEY-----"} lines, as well as any new line characters,
-     * resulting in a continuous string representation of the key, which can be used for further
-     * cryptographic operations.
+     * This method processes the given PEM key text and returns a cleaned string containing only
+     * the key material. It removes the lines matching the
+     * {@code "-----BEGIN (EC )?(RSA )?(PRIVATE|PUBLIC) KEY-----"} and
+     * {@code "-----END (EC )?(RSA )?(PRIVATE|PUBLIC) KEY-----"} patterns,
+     * as well as any newline characters,
+     * resulting in a continuous string that can be used directly for cryptographic operations.
      *
-     * @param pemKeyText the PEM formatted key as a string, which may include headers, footers and
-     *                   line breaks
-     * @return a string containing the raw key content devoid of  any unnecessary formatting
-     * or whitespace
+     * @param pemKeyText the PEM-formatted key as a string, which may include headers, footers,
+     *                   and line breaks
+     * @return a string containing the raw key content without any unnecessary formatting or whitespace
      */
     public static String getRawContent(String pemKeyText) {
-        // remove all unnecessary parts of the pem key text
         return pemKeyText
             .replaceAll("-----BEGIN ((EC )|(RSA ))?(PRIVATE|PUBLIC) KEY-----", "")
             .replaceAll("-----END ((EC )|(RSA ))?(PRIVATE|PUBLIC) KEY-----", "")

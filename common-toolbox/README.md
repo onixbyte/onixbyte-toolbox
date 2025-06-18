@@ -1,8 +1,9 @@
-# Module `devkit-utils`
+# Common Toolbox
 
 ## Introduction
 
-This module provides a set of utilities to streamline Java codes.
+Common Toolbox is a Java SE utility library, that provides a collection of utility to streamline
+your Java coding experience.
 
 ## Features
 

@@ -26,32 +26,28 @@ import com.onixbyte.crypto.PrivateKeyLoader;
 import com.onixbyte.crypto.exception.KeyLoadingException;
 import com.onixbyte.crypto.util.CryptoUtil;
 
-import java.math.BigInteger;
-import java.security.AlgorithmParameters;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.ECPrivateKey;
-import java.security.interfaces.ECPublicKey;
 import java.security.spec.*;
 import java.util.Base64;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * Key pair loader for loading key pairs for ECDSA-based algorithms.
+ * A class responsible for loading private ECDSA keys from PEM formatted text.
  * <p>
- * <b>Example usage:</b>
- * <pre>{@code
- * PrivateKeyLoader keyLoader = new ECPrivateKeyLoader();
- * String pemPrivateKey = """
- *                        -----BEGIN EC PRIVATE KEY-----
- *                        ...
- *                        -----END EC PRIVATE KEY-----""";
- * ECPrivateKey privateKey = PrivateKeyLoader.loadEcdsaPrivateKey(pemPrivateKey);
- * }</pre>
+ * This class implements the {@link PrivateKeyLoader} interface and provides methods to load private
+ * RSA keys. The keys are expected to be in the standard PEM format, which includes Base64-encoded
+ * key content surrounded by header and footer lines. The class handles the decoding of Base64
+ * content and the generation of keys using the RSA key factory.
+ * <p>
+ * Any exceptions encountered during the loading process are encapsulated in a
+ * {@link KeyLoadingException}, allowing for flexible error handling.
  *
  * @author zihluwang
+ * @author siujamo
  * @version 3.0.0
+ * @see PrivateKeyLoader
+ * @see KeyLoadingException
  */
 public class ECPrivateKeyLoader implements PrivateKeyLoader {
 

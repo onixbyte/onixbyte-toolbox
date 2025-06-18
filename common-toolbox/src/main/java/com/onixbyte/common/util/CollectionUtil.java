@@ -61,9 +61,11 @@ public final class CollectionUtil {
      *                                  {@code maxSize} is less than zero, or
      *                                  {@code collectionFactory} is {@code null}
      */
-    public static <T, C extends Collection<T>> List<C> chunk(C originalCollection,
-                                                             int maxSize,
-                                                             Supplier<C> collectionFactory) {
+    public static <T, C extends Collection<T>> List<C> chunk(
+        C originalCollection,
+        int maxSize,
+        Supplier<C> collectionFactory
+    ) {
         // check inputs
         if (Objects.isNull(originalCollection)) {
             throw new IllegalArgumentException("Collection must not be null.");
