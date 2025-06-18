@@ -23,7 +23,4 @@ include(
     "identity-generator",
     "crypto-toolbox",
     "math-toolbox",
-    "jwt-toolbox-facade",
-    "jwt-toolbox-auth0",
-    "jwt-toolbox-spring-boot-starter",
 )
