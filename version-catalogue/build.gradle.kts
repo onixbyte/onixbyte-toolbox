@@ -43,13 +43,10 @@ repositories {
 
 dependencies {
     constraints {
-        api("com.onixbyte:devkit-utils:$artefactVersion")
-        api("com.onixbyte:guid:$artefactVersion")
-        api("com.onixbyte:key-pair-loader:$artefactVersion")
-        api("com.onixbyte:num4j:$artefactVersion")
-        api("com.onixbyte:simple-jwt-facade:$artefactVersion")
-        api("com.onixbyte:simple-jwt-authzero:$artefactVersion")
-        api("com.onixbyte:simple-jwt-spring-boot-starter:$artefactVersion")
+        api("com.onixbyte:common-toolbox:$artefactVersion")
+        api("com.onixbyte:identity-generator:$artefactVersion")
+        api("com.onixbyte:crypto-toolbox:$artefactVersion")
+        api("com.onixbyte:math-toolbox:$artefactVersion")
     }
 }
 
