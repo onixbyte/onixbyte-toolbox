@@ -17,7 +17,7 @@ Add the `version-catalogue` to your `pom.xml` under `<dependencyManagement>`:
         <dependency>
             <groupId>com.onixbyte</groupId>
             <artifactId>version-catalogue</artifactId>
-            <version>${devkit-version}</version>
+            <version>3.0.0</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -33,7 +33,7 @@ In your `build.gradle[.kts]`, apply the BOM using the `platform` dependency:
 
 ```groovy
 dependencies {
-    implementation platform('com.onixbyte:version-catalogue:2.0.0')
+    implementation platform('com.onixbyte:version-catalogue:3.0.0')
     implementation 'com.onixbyte:common-toolbox'
 }
 ```
@@ -42,7 +42,7 @@ If you are using Kotlin DSL:
 
 ```kotlin
 dependencies {
-    implementation(platform("com.onixbyte:version-catalogue:2.0.0"))
+    implementation(platform("com.onixbyte:version-catalogue:3.0.0"))
     implementation("com.onixbyte:common-toolbox")
 }
 ```
