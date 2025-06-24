@@ -18,12 +18,9 @@
 rootProject.name = "onixbyte-toolbox"
 
 include(
-    "devkit-bom",
-    "devkit-utils",
-    "guid",
-    "key-pair-loader",
-    "num4j",
-    "simple-jwt-facade",
-    "simple-jwt-authzero",
-    "simple-jwt-spring-boot-starter",
+    "version-catalogue",
+    "common-toolbox",
+    "identity-generator",
+    "crypto-toolbox",
+    "math-toolbox",
 )

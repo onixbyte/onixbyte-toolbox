@@ -19,3 +19,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+package com.onixbyte.crypto;
+
+import java.security.PrivateKey;
+
+/**
+ * The {@code PrivateKeyLoader} provides utility methods for loading private keys from
+ * PEM-formatted key text.
+ *
+ * @author zihluwang
+ * @author siujamo
+ * @version 3.0.0
+ */
+public interface PrivateKeyLoader {
+
+    /**
+     * Load private key from pem-formatted key text.
+     *
+     * @param pemKeyText pem-formatted key text
+     * @return loaded private key
+     */
+    PrivateKey loadPrivateKey(String pemKeyText);
+}
