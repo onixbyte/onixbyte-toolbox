@@ -83,15 +83,44 @@ public final class AesUtil {
     /**
      * Encrypts the specified data using the AES algorithm with the provided secret key.
      *
+     * @param data    the data to be encrypted
+     * @param secret  the secret key used for encryption
+     * @param ivParam the iv param
+     * @return the encrypted data as a byte array
+     * @throws GeneralSecurityException if any cryptographic error occurs during encryption
+     */
+    public static byte[] encrypt(byte[] data, byte[] secret, byte[] ivParam) throws GeneralSecurityException {
+        var secretKeySpec = new SecretKeySpec(new SecretKeySpec(secret, AES).getEncoded(), AES);
+        var cipher = Cipher.getInstance(AES_CBC_CIPHER);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(ivParam));
+        return cipher.doFinal(data);
+    }
+
+    /**
+     * Encrypts the specified data using the AES algorithm with the provided secret key.
+     *
      * @param data   the data to be encrypted
      * @param secret the secret key used for encryption
      * @return the encrypted data as a byte array
      * @throws GeneralSecurityException if any cryptographic error occurs during encryption
      */
     public static byte[] encrypt(byte[] data, byte[] secret) throws GeneralSecurityException {
+        return encrypt(data, secret, secret);
+    }
+
+    /**
+     * Decrypts the specified data using the AES algorithm with the provided secret key.
+     *
+     * @param data    the data to be decrypted
+     * @param secret  the secret key used for decryption
+     * @param ivParam the iv param
+     * @return the decrypted data as a byte array
+     * @throws GeneralSecurityException if any cryptographic error occurs during decryption
+     */
+    public static byte[] decrypt(byte[] data, byte[] secret, byte[] ivParam) throws GeneralSecurityException {
         var secretKeySpec = new SecretKeySpec(new SecretKeySpec(secret, AES).getEncoded(), AES);
         var cipher = Cipher.getInstance(AES_CBC_CIPHER);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(secret));
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(ivParam));
         return cipher.doFinal(data);
     }
 
@@ -104,10 +133,24 @@ public final class AesUtil {
      * @throws GeneralSecurityException if any cryptographic error occurs during decryption
      */
     public static byte[] decrypt(byte[] data, byte[] secret) throws GeneralSecurityException {
-        var secretKeySpec = new SecretKeySpec(new SecretKeySpec(secret, AES).getEncoded(), AES);
-        var cipher = Cipher.getInstance(AES_CBC_CIPHER);
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(secret));
-        return cipher.doFinal(data);
+        return decrypt(data, secret, secret);
+    }
+
+    /**
+     * Encrypts the specified string data using the AES algorithm with the provided secret key.
+     *
+     * @param data    the string data to be encrypted
+     * @param secret  the secret key used for encryption
+     * @param ivParam the iv param
+     * @return the encrypted data encoded in Base64
+     * @throws GeneralSecurityException if any cryptographic error occurs during encryption
+     */
+    public static String encrypt(String data, String secret, String ivParam) throws GeneralSecurityException {
+        return Base64.getEncoder().encodeToString(encrypt(
+            data.getBytes(StandardCharsets.UTF_8),
+            secret.getBytes(StandardCharsets.UTF_8),
+            ivParam.getBytes(StandardCharsets.UTF_8)
+        ));
     }
 
     /**
@@ -119,8 +162,24 @@ public final class AesUtil {
      * @throws GeneralSecurityException if any cryptographic error occurs during encryption
      */
     public static String encrypt(String data, String secret) throws GeneralSecurityException {
-        return Base64.getEncoder().encodeToString(encrypt(data.getBytes(StandardCharsets.UTF_8),
-                secret.getBytes(StandardCharsets.UTF_8)));
+        return encrypt(data, secret, secret);
+    }
+
+    /**
+     * Decrypts the specified Base64-encoded string data using the AES algorithm with the provided secret key.
+     *
+     * @param data   the Base64-encoded string data to be decrypted
+     * @param secret the secret key used for decryption
+     * @return the decrypted string data
+     * @throws GeneralSecurityException if any cryptographic error occurs during decryption
+     */
+    public static String decrypt(String data, String secret, String ivParam) throws GeneralSecurityException {
+        var decrypted = decrypt(
+            Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)),
+            secret.getBytes(StandardCharsets.UTF_8),
+            ivParam.getBytes(StandardCharsets.UTF_8)
+        );
+        return new String(decrypted, StandardCharsets.UTF_8);
     }
 
     /**
@@ -132,9 +191,7 @@ public final class AesUtil {
      * @throws GeneralSecurityException if any cryptographic error occurs during decryption
      */
     public static String decrypt(String data, String secret) throws GeneralSecurityException {
-        var decrypted = decrypt(Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)),
-                secret.getBytes(StandardCharsets.UTF_8));
-        return new String(decrypted, StandardCharsets.UTF_8);
+        return decrypt(data, secret, secret);
     }
 
     /**
