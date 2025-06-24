@@ -55,7 +55,7 @@ jobs:
           distribution: "corretto"
 
       - name: Setup Gradle
-        uses: gradle/actions@v4.4.1
+        uses: gradle/actions/setup-gradle@v4.4.1
 
       - name: Grant Execution Authority to Gradlew
         run: chmod +x ./gradlew
