@@ -1,8 +1,8 @@
 # OnixByte Toolbox
 
-![Static Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fonixbyte%2Fdevkit-bom%2Fmaven-metadata.xml&query=%2F%2Fmetadata%2Fversioning%2Flatest&label=version)
-![Static Badge](https://img.shields.io/badge/licence-Apache_2.0-green)
-![Static Badge](https://img.shields.io/badge/JDK-%E2%89%A517-blue)
+![Static Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fonixbyte%2Fversion-catalogue%2Fmaven-metadata.xml&query=%2F%2Fmetadata%2Fversioning%2Flatest&label=version)
+![Static Badge](https://img.shields.io/badge/licence-MIT-green)
+![Static Badge](https://img.shields.io/badge/java-%E2%89%A517-blue)
 
 
 OnixByte Toolbox is a Java Development Kit that offers a set of convenient tools for writing code efficiently.
@@ -35,7 +35,7 @@ If you want to check the available versions, please check out at our [official s
 Contributions are welcome! If you encounter any issues or want to contribute to the project, please feel free to **[raise an issue](https://github.com/CodeCraftersCN/jdevkit/issues/new)** or **[submit a pull request](https://github.com/CodeCraftersCN/jdevkit/compare)**.
 
 ## License
-This project is licensed under the [Apache License 2.0](LICENSE).
+This project is licensed under the [MIT](LICENSE).
 
 ## Contact
 If you have any suggestions, ideas, don't hesitate contacting us via [GitHub Issues](https://github.com/CodeCraftersCN/jdevkit/issues/new) or [Discord Community](https://discord.gg/NQK9tjcBB8). 
