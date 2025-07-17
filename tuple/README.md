@@ -54,7 +54,7 @@ implementation libs.onixbyteToolbox.tuple
 Add the following line to your `build.gradle.kts` dependencies block:
 
 ```kotlin
-implementation("com.onixbyte:tuple:$artefactVerison")
+implementation("com.onixbyte:tuple:$artefactVersion")
 ```
 
 #### Groovy DSL
