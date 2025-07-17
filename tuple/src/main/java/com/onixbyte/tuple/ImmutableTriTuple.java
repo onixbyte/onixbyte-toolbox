@@ -41,7 +41,7 @@ public record ImmutableTriTuple<L, M, R>(
 ) {
 
     /**
-     * Creates a new {@code TriTuple} with the specified left, middle, and right elements.
+     * Creates a new {@code ImmutableTriTuple} with the specified left, middle, and right elements.
      *
      * @param <L>    the type of the left element
      * @param <M>    the type of the middle element

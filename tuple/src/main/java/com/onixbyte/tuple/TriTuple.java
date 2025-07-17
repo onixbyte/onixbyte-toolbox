@@ -20,11 +20,11 @@ package com.onixbyte.tuple;
 import java.util.Objects;
 
 /**
- * Represents an immutable triple of three elements, referred to as 'left', 'middle' and 'right'.
+ * Represents an mutable triple of three elements, referred to as 'left', 'middle' and 'right'.
  * This class provides a way to group three values of different types.
  * <p>
- * The generic types {@code L}, {@code M} and {@code R} denote the types of the left, middle and right
- * elements respectively.
+ * The generic types {@code L}, {@code M} and {@code R} denote the types of the left, middle and
+ * right elements respectively.
  *
  * @param <L> the type of the left element
  * @param <M> the type of the middle element

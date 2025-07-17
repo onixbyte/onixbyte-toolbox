@@ -20,9 +20,9 @@ package com.onixbyte.tuple;
 import java.util.Objects;
 
 /**
- * Represents an ordered pair of elements, where the first element is of type {@code L}
- * and the second is of type {@code R}. This class provides a simple way to group two
- * related values together.
+ * Represents an ordered pair of elements, where the first element is of type {@code L} and the
+ * second is of type {@code R}. This class provides a simple way to group two related
+ * values together.
  * <p>
  * The class is mutable, allowing the values of the left and right elements to be changed
  * after creation. It also overrides the {@code equals}, {@code hashCode}, and {@code toString}
