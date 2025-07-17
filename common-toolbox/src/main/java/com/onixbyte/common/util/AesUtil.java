@@ -168,8 +168,9 @@ public final class AesUtil {
     /**
      * Decrypts the specified Base64-encoded string data using the AES algorithm with the provided secret key.
      *
-     * @param data   the Base64-encoded string data to be decrypted
-     * @param secret the secret key used for decryption
+     * @param data    the Base64-encoded string data to be decrypted
+     * @param secret  the secret key used for decryption
+     * @param ivParam the initialization vector parameter used for AES decryption
      * @return the decrypted string data
      * @throws GeneralSecurityException if any cryptographic error occurs during decryption
      */
