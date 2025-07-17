@@ -49,7 +49,7 @@ public record ImmutableTriTuple<L, M, R>(
      * @param left   the left element
      * @param middle the middle element
      * @param right  the right element
-     * @return a new {@code TriTuple} containing the specified elements
+     * @return a new {@code ImmutableTriTuple} containing the specified elements
      */
     public static <L, M, R> ImmutableTriTuple<L, M, R> of(L left, M middle, R right) {
         return new ImmutableTriTuple<>(left, middle, right);
