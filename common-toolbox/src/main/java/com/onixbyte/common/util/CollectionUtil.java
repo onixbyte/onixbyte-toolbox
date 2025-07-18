@@ -113,21 +113,20 @@ public final class CollectionUtil {
     }
 
     /**
-     * Check whether a given collection is not empty.
+     * Check if a collection is not null and not empty.
      *
-     * @param collection the collection to be checked
-     * @return {@code true} if provided collection is not null and not empty,
-     * {@code false} otherwise
+     * @param collection the collection to check
+     * @return {@code true} if the collection is not null and not empty, {@code false} otherwise
      */
     public static boolean notEmpty(Collection<?> collection) {
         return Objects.nonNull(collection) && !collection.isEmpty();
     }
 
     /**
-     * Check whether a given collection is empty.
+     * Check if a collection is null or empty.
      *
-     * @param collection the collection to be checked
-     * @return {@code true} if provided collection is null or is empty, {@code false} otherwise
+     * @param collection the collection to check
+     * @return {@code true} if the collection is null or empty, {@code false} otherwise
      */
     public static boolean isEmpty(Collection<?> collection) {
         return Objects.isNull(collection) || collection.isEmpty();
