@@ -29,9 +29,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 /**
- * The {@code SnowflakeIdentityGenerator} generates unique identifiers using the Snowflake algorithm,
- * which combines a timestamp, worker ID, and data centre ID to create 64-bit long integers. The bit
- * distribution for the generated IDs is as follows:
+ * The {@code SnowflakeIdentityGenerator} generates unique identifiers using the
+ * Snowflake algorithm, which combines a timestamp, worker ID, and data centre ID to create 64-bit
+ * long integers. The bit distribution for the generated IDs is as follows:
  * <ul>
  *     <li>1 bit for sign</li>
  *     <li>41 bits for timestamp (in milliseconds)</li>
@@ -40,7 +40,7 @@ import java.time.ZoneId;
  *     <li>12 bits for sequence number (per millisecond)</li>
  * </ul>
  * <p>
- * When initializing a {@link SnowflakeIdentityGenerator}, you must provide the worker ID and data
+ * When initialising a {@link SnowflakeIdentityGenerator}, you must provide the worker ID and data
  * centre ID, ensuring they are within the valid range defined by the bit size. The generator
  * maintains an internal sequence number that increments for IDs generated within the
  * same millisecond. If the system clock moves backward, an exception is thrown to prevent
@@ -64,14 +64,14 @@ public final class SnowflakeIdentityGenerator implements IdentityGenerator<Long>
     private final long startEpoch;
 
     /**
-     * The number of bits reserved for the worker ID.
-     */
-    private final long workerIdBits = 5L;
-
-    /**
      * The number of bits reserved for the data centre ID.
      */
-    private final long dataCentreIdBits = 5L;
+    private static final long DATA_CENTRE_ID_BITS = 5L;
+
+    /**
+     * The number of bits reserved for the worker ID.
+     */
+    private static final long WORKER_ID_BITS = 5L;
 
     /**
      * The worker ID assigned to this generator.
@@ -118,13 +118,13 @@ public final class SnowflakeIdentityGenerator implements IdentityGenerator<Long>
             throw new IllegalArgumentException("Start Epoch can not be greater than current timestamp!");
         }
 
-        var maxWorkerId = ~(-1L << workerIdBits);
+        var maxWorkerId = ~(-1L << WORKER_ID_BITS);
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("Worker Id can't be greater than %d or less than 0",
                 maxWorkerId));
         }
 
-        var maxDataCentreId = ~(-1L << dataCentreIdBits);
+        var maxDataCentreId = ~(-1L << DATA_CENTRE_ID_BITS);
         if (dataCentreId > maxDataCentreId || dataCentreId < 0) {
             throw new IllegalArgumentException(String.format("Data Centre Id can't be greater than %d or less than 0",
                 maxDataCentreId));
@@ -172,8 +172,8 @@ public final class SnowflakeIdentityGenerator implements IdentityGenerator<Long>
         lastTimestamp = timestamp;
 
         // shifted and put together by or operations to form a 64-bit ID
-        var timestampLeftShift = sequenceBits + workerIdBits + dataCentreIdBits;
-        var dataCentreIdShift = sequenceBits + workerIdBits;
+        var timestampLeftShift = sequenceBits + WORKER_ID_BITS + DATA_CENTRE_ID_BITS;
+        var dataCentreIdShift = sequenceBits + WORKER_ID_BITS;
         return ((timestamp - startEpoch) << timestampLeftShift)
             | (dataCentreId << dataCentreIdShift)
             | (workerId << sequenceBits)
