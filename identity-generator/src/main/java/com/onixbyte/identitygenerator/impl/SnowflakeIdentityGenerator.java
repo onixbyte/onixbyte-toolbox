@@ -154,18 +154,17 @@ public final class SnowflakeIdentityGenerator implements IdentityGenerator<Long>
         }
 
         // if generated at the same time, perform intra-millisecond sequences
-        long sequenceBits = 12L;
+        var sequenceBits = 12L;
         if (lastTimestamp == timestamp) {
-            long sequenceMask = ~(-1L << sequenceBits);
+            var sequenceMask = ~(-1L << sequenceBits);
             sequence = (sequence + 1) & sequenceMask;
             // sequence overflow in milliseconds
             if (sequence == 0) {
                 // block to the next millisecond, get a new timestamp
                 timestamp = awaitToNextMillis(lastTimestamp);
             }
-        }
-        // timestamp change, sequence reset in milliseconds
-        else {
+        } else {
+            // timestamp change, sequence reset in milliseconds
             sequence = 0L;
         }
 
