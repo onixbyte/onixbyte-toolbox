@@ -1,0 +1,78 @@
+name: Bug Report
+description: Report a bug to help us improve the application.
+title: "[Bug] "
+labels: [bug]
+type: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: |
+        A clear and concise description of what the bug is. If applicable, add screenshots to help
+        explain your problem.
+      placeholder: Describe the bug you encountered...
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to help us reproduce the behaviour.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected Behaviour
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Describe what you expected to happen...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System (OS)
+      description: Your operating system.
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+  - type: input
+    id: application-version
+    attributes:
+      label: Application Version
+      description: The version of the Application you are using.
+      placeholder: e.g., x.y.z
+    validations:
+      required: true
+  - type: input
+    id: java-version
+    attributes:
+      label: Java Version
+      description: |
+        The Java Development Kit (JDK) version used.
+      placeholder: |
+        eg. Amazon Corretto x.y.z, Microsoft Open JDK x.y.z
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context (Optional)
+      description: |
+        Add any other context about the problem here, such as logs, specific scenarios,
+        or workarounds.
+      placeholder: Any other relevant information...
