@@ -1,0 +1,66 @@
+name: Feature Request
+description: Suggest an idea or new feature to enhance the Calendar Toolbox.
+title: "[Feature Request] "
+labels: ["feature request"]
+type: feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for considering a new feature for Calendar Toolbox! Please provide as much detail as possible.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: A concise summary of the feature you'd like to see added.
+      placeholder: Briefly describe your feature idea here.
+    validations:
+      required: true
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: Why is this needed?
+      description: |
+        Explain the problem you’re facing or what could be improved by adding this feature. How
+        would it make development with the Calendar Toolbox easier or better?
+      placeholder: Describe the problem or improvement this feature addresses.
+    validations:
+      required: true
+  - type: textarea
+    id: idea_description
+    attributes:
+      label: What's your idea?
+      description: |
+        Describe how you imagine this feature working within the class library. Feel free to share
+        any technical details, examples, or use cases.
+      placeholder: Provide details on how the feature would function.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: |
+        Have you tried any alternatives or workarounds? If so, what are they and why don’t they
+        fully meet your needs?
+      placeholder: List any alternatives or workarounds you've considered.
+    validations:
+      required: false
+  - type: input
+    id: target-version
+    attributes:
+      label: Target Version (Optional)
+      description: If you have a preferred release version for this feature, please mention it here.
+      placeholder: e.g., v1.2.0 or Next Minor Release
+    validations:
+      required: false
+  - type: textarea
+    id: other-info
+    attributes:
+      label: Any other info (Optional)
+      description: |
+        Anything else you think might help us understand your request better—like links,
+        related issues, or thoughts.
+      placeholder: Add any additional relevant information here.
+    validations:
+      required: false
