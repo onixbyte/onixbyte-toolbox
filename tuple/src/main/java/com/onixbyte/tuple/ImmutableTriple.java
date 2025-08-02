@@ -34,14 +34,14 @@ package com.onixbyte.tuple;
  * @author siujamo
  * @author zihluwang
  */
-public record ImmutableTriTuple<L, M, R>(
+public record ImmutableTriple<L, M, R>(
     L left,
     M middle,
     R right
 ) {
 
     /**
-     * Creates a new {@code ImmutableTriTuple} with the specified left, middle, and right elements.
+     * Creates a new {@code ImmutableTriple} with the specified left, middle, and right elements.
      *
      * @param <L>    the type of the left element
      * @param <M>    the type of the middle element
@@ -49,9 +49,9 @@ public record ImmutableTriTuple<L, M, R>(
      * @param left   the left element
      * @param middle the middle element
      * @param right  the right element
-     * @return a new {@code ImmutableTriTuple} containing the specified elements
+     * @return a new {@code ImmutableTriple} containing the specified elements
      */
-    public static <L, M, R> ImmutableTriTuple<L, M, R> of(L left, M middle, R right) {
-        return new ImmutableTriTuple<>(left, middle, right);
+    public static <L, M, R> ImmutableTriple<L, M, R> of(L left, M middle, R right) {
+        return new ImmutableTriple<>(left, middle, right);
     }
 }
