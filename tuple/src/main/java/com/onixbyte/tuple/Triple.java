@@ -34,19 +34,8 @@ import java.util.Objects;
  */
 public final class Triple<L, M, R> {
 
-    /**
-     * The left element of the triple.
-     */
     private L left;
-
-    /**
-     * The middle element of the triple.
-     */
     private M middle;
-
-    /**
-     * The right element of the triple.
-     */
     private R right;
 
     /**
@@ -117,8 +106,8 @@ public final class Triple<L, M, R> {
     }
 
     /**
-     * Checks if this {@code Triple} is equal to the specified object.
-     * Two {@code Triple}s are considered equal if their left, middle and right elements are equal.
+     * Checks if this {@code Triple} is equal to the specified object. Two {@code Triple}s are
+     * considered equal if their left, middle and right elements are equal.
      *
      * @param object the object to compare with
      * @return {@code true} if the objects are equal, {@code false} otherwise
@@ -132,7 +121,8 @@ public final class Triple<L, M, R> {
     }
 
     /**
-     * Calculates the hash code for this {@code Triple} based on its left, middle and right elements.
+     * Calculates the hash code for this {@code Triple} based on its left, middle and
+     * right elements.
      *
      * @return the hash code value for this object
      */
@@ -142,7 +132,8 @@ public final class Triple<L, M, R> {
     }
 
     /**
-     * Returns a string representation of this {@code Triple}, including its left, middle and right elements.
+     * Returns a string representation of this {@code Triple}, including its left, middle and
+     * right elements.
      *
      * @return a string representation of the object
      */
