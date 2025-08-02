@@ -32,12 +32,15 @@ implementation("com.onixbyte:$artifactId:$version")
 If you want to check the available versions, please check out at our [official site](https://codecrafters.org.cn/devkit/changelog).
 
 ## Contribution
+
 Contributions are welcome! If you encounter any issues or want to contribute to the project, please feel free to **[raise an issue](https://github.com/CodeCraftersCN/jdevkit/issues/new)** or **[submit a pull request](https://github.com/CodeCraftersCN/jdevkit/compare)**.
 
 ## License
-This project is licensed under the [MIT](LICENSE).
+
+This project is licensed under the [MIT](/LICENSE).
 
 ## Contact
+
 If you have any suggestions, ideas, don't hesitate contacting us via [GitHub Issues](https://github.com/CodeCraftersCN/jdevkit/issues/new) or [Discord Community](https://discord.gg/NQK9tjcBB8). 
 
 If you face any bugs while using our library and you are able to fix any bugs in our library, we would be happy to accept pull requests from you on [GitHub](https://github.com/CodeCraftersCN/jdevkit/compare).
