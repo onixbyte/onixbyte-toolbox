@@ -33,7 +33,7 @@ import java.util.Objects;
  * @author siujamo
  * @author zihluwang
  */
-public final class BiTuple<L, R> {
+public final class Tuple<L, R> {
 
     /**
      * The left element of the tuple.
@@ -46,12 +46,12 @@ public final class BiTuple<L, R> {
     private R right;
 
     /**
-     * Constructs a new {@code BiTuple} with the specified left and right elements.
+     * Constructs a new {@code Tuple} with the specified left and right elements.
      *
      * @param left  the left element to be stored in the tuple
      * @param right the right element to be stored in the tuple
      */
-    public BiTuple(L left, R right) {
+    public Tuple(L left, R right) {
         this.left = left;
         this.right = right;
     }
@@ -93,27 +93,27 @@ public final class BiTuple<L, R> {
     }
 
     /**
-     * Compares this {@code BiTuple} with the specified object for equality.
+     * Compares this {@code Tuple} with the specified object for equality.
      * <p>
-     * Two {@code BiTuple}s are considered equal if they are of the same type and their left and
+     * Two {@code Tuple}s are considered equal if they are of the same type and their left and
      * right elements are equal according to their respective {@code equals} methods.
      *
-     * @param object the object to compare with this {@code BiTuple}
-     * @return {@code true} if the specified object is equal to this {@code BiTuple},
+     * @param object the object to compare with this {@code Tuple}
+     * @return {@code true} if the specified object is equal to this {@code Tuple},
      * {@code false} otherwise
      */
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof BiTuple<?, ?> biTuple)) return false;
-        return Objects.equals(left, biTuple.left) && Objects.equals(right, biTuple.right);
+        if (!(object instanceof Tuple<?, ?> tuple)) return false;
+        return Objects.equals(left, tuple.left) && Objects.equals(right, tuple.right);
     }
 
     /**
-     * Returns a hash code value for the {@code BiTuple}.
+     * Returns a hash code value for the {@code Tuple}.
      * <p>
      * The hash code is calculated based on the hash codes of the left and right elements.
      *
-     * @return a hash code value for this {@code BiTuple}
+     * @return a hash code value for this {@code Tuple}
      */
     @Override
     public int hashCode() {
@@ -121,31 +121,31 @@ public final class BiTuple<L, R> {
     }
 
     /**
-     * Returns a string representation of the {@code BiTuple}.
+     * Returns a string representation of the {@code Tuple}.
      * <p>
      * The string representation consists of the class name, followed by the values of
-     * the left and right elements in the format {@code "BiTuple{left=value1, right=value2}"}.
+     * the left and right elements in the format {@code "Tuple{left=value1, right=value2}"}.
      *
-     * @return a string representation of the {@code BiTuple}
+     * @return a string representation of the {@code Tuple}
      */
     @Override
     public String toString() {
-        return "BiTuple{" +
+        return "Tuple{" +
             "left=" + left +
             ", right=" + right +
             '}';
     }
 
     /**
-     * Creates a new {@code BiTuple} with the specified left and right elements.
+     * Creates a new {@code Tuple} with the specified left and right elements.
      *
      * @param <L>   the type of the left element
      * @param <R>   the type of the right element
      * @param left  the left element
      * @param right the right element
-     * @return a new {@code BiTuple} containing the specified elements
+     * @return a new {@code Tuple} containing the specified elements
      */
-    public static <L, R> BiTuple<L, R> of(L left, R right) {
-        return new BiTuple<>(left, right);
+    public static <L, R> Tuple<L, R> of(L left, R right) {
+        return new Tuple<>(left, right);
     }
 }
