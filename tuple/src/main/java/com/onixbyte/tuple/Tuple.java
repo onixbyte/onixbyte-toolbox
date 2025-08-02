@@ -35,14 +35,7 @@ import java.util.Objects;
  */
 public final class Tuple<L, R> {
 
-    /**
-     * The left element of the tuple.
-     */
     private L left;
-
-    /**
-     * The right element of the tuple.
-     */
     private R right;
 
     /**
