@@ -17,12 +17,9 @@
 
 rootProject.name = "onixbyte-toolbox"
 
-include(
-    "version-catalogue",
-    "common-toolbox",
-    "identity-generator",
-    "crypto-toolbox",
-    "math-toolbox",
-)
-
+include("version-catalogue")
+include("common-toolbox")
 include("tuple")
+include("identity-generator")
+include("crypto-toolbox")
+include("math-toolbox")
