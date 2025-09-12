@@ -38,45 +38,45 @@ import java.util.function.Function;
  * <b>Usage:</b>
  * <pre>
  *  // Perform addition: 3 + 4
- *  BigDecimal result1 = ChainedCalcUtil.startWith(3)
+ *  BigDecimal result1 = Calculator.startWith(3)
  *                                      .add(4)
  *                                      .getValue();
  *
  *  // Perform subtraction: 4 - 2
- *  BigDecimal result2 = ChainedCalcUtil.startWith(4)
+ *  BigDecimal result2 = Calculator.startWith(4)
  *                                      .subtract(2)
  *                                      .getValue();
  *
  *  // Perform multiplication: 3 * 6
- *  BigDecimal result3 = ChainedCalcUtil.startWith(3)
+ *  BigDecimal result3 = Calculator.startWith(3)
  *                                      .multiply(6)
  *                                      .getValue();
  *
  *  // Perform division: 6 ÷ 2
- *  BigDecimal result4 = ChainedCalcUtil.startWith(6)
+ *  BigDecimal result4 = Calculator.startWith(6)
  *                                      .divide(2)
  *                                      .getValue();
  *
  *  // Perform division with specified scale: 13 ÷ 7 with a scale of 2
- *  BigDecimal result5 = ChainedCalcUtil.startWith(13)
+ *  BigDecimal result5 = Calculator.startWith(13)
  *                                      .divideWithScale(7, 2)
  *                                      .getValue();
  *
  *  // Get int, long, or double results
- *  int intResult = ChainedCalcUtil.startWith(3)
+ *  int intResult = Calculator.startWith(3)
  *                                .add(4)
  *                                .getInteger();
  *
- *  long longResult = ChainedCalcUtil.startWith(4)
+ *  long longResult = Calculator.startWith(4)
  *                                  .subtract(2)
  *                                  .getLong();
  *
- *  double doubleResult = ChainedCalcUtil.startWith(6)
+ *  double doubleResult = Calculator.startWith(6)
  *                                      .divide(2)
  *                                      .getDouble();
  *
  *  // Get BigDecimal result with specified scale
- *  BigDecimal result6 = ChainedCalcUtil.startWith(13)
+ *  BigDecimal result6 = Calculator.startWith(13)
  *                                      .divide(7)
  *                                      .getValue(2);
  *  </pre>
@@ -89,18 +89,18 @@ import java.util.function.Function;
  * and may have performance implications for extremely large numbers or complex calculations.
  *
  * @author sunzsh
- * @version 3.0.0
+ * @version 3.3.0
  * @see BigDecimal
  * @since 1.0.0
  */
-public final class ChainedCalcUtil {
+public final class Calculator {
 
     /**
      * Creates a {@code ChainedCalcUtil} instance with the specified initial value.
      *
      * @param value the initial value for the calculation
      */
-    private ChainedCalcUtil(Number value) {
+    private Calculator(Number value) {
         this.value = convertBigDecimal(value, null);
     }
 
@@ -110,8 +110,8 @@ public final class ChainedCalcUtil {
      * @param value the initial value for the calculation
      * @return a {@code ChainedCalcUtil} instance for performing chained calculations
      */
-    public static ChainedCalcUtil startWith(Number value) {
-        return new ChainedCalcUtil(value);
+    public static Calculator startWith(Number value) {
+        return new Calculator(value);
     }
 
     /**
@@ -120,7 +120,7 @@ public final class ChainedCalcUtil {
      * @param other the value to be added
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil add(Number other) {
+    public Calculator add(Number other) {
         return operator(BigDecimal::add, other);
     }
 
@@ -131,7 +131,7 @@ public final class ChainedCalcUtil {
      * @param beforeOperateScale the scale to be applied before the operation
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil add(Number other, Integer beforeOperateScale) {
+    public Calculator add(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::add, other, beforeOperateScale);
     }
 
@@ -141,7 +141,7 @@ public final class ChainedCalcUtil {
      * @param other the value to be subtracted
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil subtract(Number other) {
+    public Calculator subtract(Number other) {
         return operator(BigDecimal::subtract, other);
     }
 
@@ -153,7 +153,7 @@ public final class ChainedCalcUtil {
      * @param beforeOperateScale the scale to be applied before the operation
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil subtract(Number other, Integer beforeOperateScale) {
+    public Calculator subtract(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::subtract, other, beforeOperateScale);
     }
 
@@ -163,7 +163,7 @@ public final class ChainedCalcUtil {
      * @param other the value to be multiplied by
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil multiply(Number other) {
+    public Calculator multiply(Number other) {
         return operator(BigDecimal::multiply, other);
     }
 
@@ -175,7 +175,7 @@ public final class ChainedCalcUtil {
      * @param beforeOperateScale the scale to be applied before the operation
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil multiply(Number other, Integer beforeOperateScale) {
+    public Calculator multiply(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::multiply, other, beforeOperateScale);
     }
 
@@ -185,7 +185,7 @@ public final class ChainedCalcUtil {
      * @param other the value to divide by
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil divide(Number other) {
+    public Calculator divide(Number other) {
         return operator(BigDecimal::divide, other);
     }
 
@@ -196,7 +196,7 @@ public final class ChainedCalcUtil {
      * @param beforeOperateScale the scale to be applied before the operation
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil divide(Number other, Integer beforeOperateScale) {
+    public Calculator divide(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::divide, other, beforeOperateScale);
     }
 
@@ -207,9 +207,9 @@ public final class ChainedCalcUtil {
      * @param scale the scale for the result
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil divideWithScale(Number other, Integer scale) {
+    public Calculator divideWithScale(Number other, Integer scale) {
         return baseOperator(otherValue ->
-                this.value.divide(otherValue, scale, RoundingMode.HALF_UP), other, null);
+            this.value.divide(otherValue, scale, RoundingMode.HALF_UP), other, null);
     }
 
     /**
@@ -221,10 +221,10 @@ public final class ChainedCalcUtil {
      * @param beforeOperateScale the scale to be applied before the operation
      * @return a {@code ChainedCalcUtil} instance with the updated value
      */
-    public ChainedCalcUtil divideWithScale(Number other, Integer scale, Integer beforeOperateScale) {
+    public Calculator divideWithScale(Number other, Integer scale, Integer beforeOperateScale) {
         return baseOperator((otherValue) ->
-                        this.value.divide(otherValue, scale, RoundingMode.HALF_UP),
-                other, beforeOperateScale);
+                this.value.divide(otherValue, scale, RoundingMode.HALF_UP),
+            other, beforeOperateScale);
     }
 
     /**
@@ -290,7 +290,10 @@ public final class ChainedCalcUtil {
      * @param otherValue the value to apply the operator with
      * @return a ChainedCalcUtil instance with the updated value
      */
-    private ChainedCalcUtil operator(BiFunction<BigDecimal, BigDecimal, BigDecimal> operator, Object otherValue) {
+    private Calculator operator(
+        BiFunction<BigDecimal, BigDecimal, BigDecimal> operator,
+        Object otherValue
+    ) {
         return operator(operator, otherValue, 9);
     }
 
@@ -304,13 +307,16 @@ public final class ChainedCalcUtil {
      *                           or null if not applicable
      * @return a ChainedCalcUtil instance with the updated value
      */
-    private ChainedCalcUtil operator(BiFunction<BigDecimal, BigDecimal, BigDecimal> operator,
-                                     Object other,
-                                     Integer beforeOperateScale) {
-        return baseOperator((otherValue) ->
-                        operator.apply(this.value, otherValue),
-                other,
-                beforeOperateScale);
+    private Calculator operator(
+        BiFunction<BigDecimal, BigDecimal, BigDecimal> operator,
+        Object other,
+        Integer beforeOperateScale
+    ) {
+        return baseOperator(
+            (otherValue) -> operator.apply(this.value, otherValue),
+            other,
+            beforeOperateScale
+        );
     }
 
     /**
@@ -323,14 +329,16 @@ public final class ChainedCalcUtil {
      *                           or null if not applicable
      * @return a ChainedCalcUtil instance with the updated value
      */
-    private synchronized ChainedCalcUtil baseOperator(Function<BigDecimal, BigDecimal> operatorFunction,
-                                                      Object anotherValue,
-                                                      Integer beforeOperateScale) {
+    private synchronized Calculator baseOperator(
+        Function<BigDecimal, BigDecimal> operatorFunction,
+        Object anotherValue,
+        Integer beforeOperateScale
+    ) {
         if (Objects.isNull(anotherValue)) {
             return this;
         }
-        if (anotherValue instanceof ChainedCalcUtil) {
-            this.value = operatorFunction.apply(((ChainedCalcUtil) anotherValue).getValue());
+        if (anotherValue instanceof Calculator) {
+            this.value = operatorFunction.apply(((Calculator) anotherValue).getValue());
             return this;
         }
         this.value = operatorFunction.apply(convertBigDecimal(anotherValue, beforeOperateScale));
@@ -366,8 +374,7 @@ public final class ChainedCalcUtil {
     }
 
     /**
-     * -- GETTER --
-     * Returns the current value as a BigDecimal.
+     * Final result.
      */
     private BigDecimal value;
 
