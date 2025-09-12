@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package com.onixbyte.common.util;
+package com.onixbyte.common.adapter;
 
 import java.util.Map;
 
