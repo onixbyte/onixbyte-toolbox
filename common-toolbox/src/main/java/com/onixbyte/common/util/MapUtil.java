@@ -22,6 +22,8 @@
 
 package com.onixbyte.common.util;
 
+import com.onixbyte.common.adapter.ObjectMapAdapter;
+
 import java.util.Map;
 
 /**
