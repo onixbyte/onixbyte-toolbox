@@ -44,6 +44,7 @@ dependencies {
         api("com.onixbyte:identity-generator:$artefactVersion")
         api("com.onixbyte:crypto-toolbox:$artefactVersion")
         api("com.onixbyte:math-toolbox:$artefactVersion")
+        api("com.onixbyte:tuple:$artefactVersion")
     }
 }
 
