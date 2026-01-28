@@ -34,9 +34,6 @@ val projectGithubUrl: String by project
 val licenseName: String by project
 val licenseUrl: String by project
 
-group = "com.onixbyte"
-version = artefactVersion
-
 repositories {
     mavenCentral()
 }
@@ -47,6 +44,7 @@ dependencies {
         api("com.onixbyte:identity-generator:$artefactVersion")
         api("com.onixbyte:crypto-toolbox:$artefactVersion")
         api("com.onixbyte:math-toolbox:$artefactVersion")
+        api("com.onixbyte:tuple:$artefactVersion")
     }
 }
 

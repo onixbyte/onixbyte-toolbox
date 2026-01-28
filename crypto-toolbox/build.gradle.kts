@@ -35,9 +35,6 @@ val projectGithubUrl: String by project
 val licenseName: String by project
 val licenseUrl: String by project
 
-group = "com.onixbyte"
-version = artefactVersion
-
 repositories {
     mavenCentral()
 }
@@ -60,7 +57,6 @@ tasks.withType<Jar> {
 dependencies {
     compileOnly(libs.slf4j)
     implementation(libs.logback)
-    testImplementation(libs.jwt.core)
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
 }
