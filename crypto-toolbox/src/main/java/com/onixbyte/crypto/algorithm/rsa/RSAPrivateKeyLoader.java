@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024-2025 OnixByte
+ * Copyright (c) 2024-2026 OnixByte
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,11 +26,9 @@ import com.onixbyte.crypto.PrivateKeyLoader;
 import com.onixbyte.crypto.exception.KeyLoadingException;
 import com.onixbyte.crypto.util.CryptoUtil;
 
-import java.math.BigInteger;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
 import java.security.spec.*;
 import java.util.Base64;
 
